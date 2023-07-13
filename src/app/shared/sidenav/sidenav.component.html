@@ -1,0 +1,23 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <img src="./assets/logo.svg" alt="Company Logo" />
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2">Navigation</h2>
+
+  <div >
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="home">
+      <mat-icon>B</mat-icon> B-Nav btn
+    </a>
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="newadding">
+        <mat-icon>Create </mat-icon> C-Nav btn
+      </a>
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="userstatus">
+        <mat-icon>U </mat-icon> U-Nav btn
+      </a>
+
+     
+
+  </div>
+
+</mat-nav-list>
