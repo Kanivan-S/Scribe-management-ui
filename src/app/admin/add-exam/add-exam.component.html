@@ -1,0 +1,78 @@
+<h2 class="title" mat-dialog-title>Add a exam</h2>
+<mat-dialog-content>
+  <hr />
+  <div class="form">
+    <mat-form-field class="full-width">
+      <mat-label>Exam Name</mat-label>
+      <input matInput placeholder="Some Name" [(ngModel)]="examDetails.name" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Venue</mat-label>
+      <textarea
+        [(ngModel)]="examDetails.venue"
+        matInput
+        placeholder="TechZone Embassy"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input
+        [(ngModel)]="examDetails.dateTime"
+        matInput
+        type="datetime-local"
+      />
+    </mat-form-field>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>City</mat-label>
+            <input
+              [(ngModel)]="examDetails.city"
+              matInput
+              placeholder="Chennai"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>State</mat-label>
+            <input
+              [(ngModel)]="examDetails.state"
+              matInput
+              placeholder="TamilNadu"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Postal Code</mat-label>
+            <input
+              [(ngModel)]="examDetails.zip"
+              matInput
+              maxlength="6"
+              placeholder="211004"
+            />
+            <mat-hint align="end">{{ examDetails.zip.length }} / 6</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr />
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    (click)="add()"
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Add
+  </button>
+</mat-dialog-actions>

@@ -11,14 +11,14 @@ const routes: Routes = [
   { path: 'login', component:LoginRegisterComponent },
   {
     path: 'admin',
-    canActivate:[RoleGuard],
+    // canActivate:[RoleGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((mod) => mod.AdminModule),
 
   },
   {
     path:'user',
-    canActivate:[AuthGuard],
+    // canActivate:[AuthGuard],
     loadChildren: () =>
       import('./users/users.module').then((mod) => mod.UsersModule),
   },
