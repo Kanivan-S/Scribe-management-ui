@@ -28,11 +28,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import{MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
     declarations: [
       UsersComponent,
       DashboardComponent,
       UserProfileComponent,
+      CalendarComponent,
     ],
     imports: [
         CommonModule,
