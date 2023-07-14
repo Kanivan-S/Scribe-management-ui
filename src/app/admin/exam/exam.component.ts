@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddExamComponent } from '../add-exam/add-exam.component';
+import { ExamDialogComponent } from '../exam-dialog/exam-dialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, SortDirection } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
@@ -19,12 +19,19 @@ export class ExamComponent implements OnInit {
   constructor(private _httpClient: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
-  details(examId) {
+  details(exam) {
+    this.dialog.open(ExamDialogComponent, {
+      width: '80%',
+      data: { type: 'edit', ...exam },
+    });
     //open a particular exam details from here
-    console.log(examId);
+    console.log(exam);
   }
   addExam() {
-    const dialogRef = this.dialog.open(AddExamComponent);
+    const dialogRef = this.dialog.open(ExamDialogComponent, {
+      width: '80%',
+      data: { type: 'add' },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -81,6 +88,9 @@ export interface Exam {
   name: string;
   venue: string;
   noOfStudents: number;
+  city: string;
+  state: string;
+  postalCode: string;
 }
 
 export class ExamDataSource {
@@ -91,22 +101,31 @@ export class ExamDataSource {
       id: 'xyz',
       name: 'first name',
       date: new Date(Date.now()),
-      venue: 'chennai',
+      venue: 'TD College',
       noOfStudents: 34,
+      city: 'ballia',
+      state: 'UP',
+      postalCode: '277405',
     },
     {
       id: 'abc',
       name: 'second name',
       date: new Date(Date.now()),
-      venue: 'mumbai',
+      venue: 'SVBH Degree College',
       noOfStudents: 29,
+      city: 'Chhapra',
+      state: 'Bihar',
+      postalCode: '288900',
     },
     {
       id: 'pqr',
       name: 'third name',
       date: new Date(Date.now()),
-      venue: 'bangaluru',
+      venue: 'Little Flower School',
       noOfStudents: 45,
+      city: 'ballia',
+      state: 'UP',
+      postalCode: '277405',
     },
   ];
 

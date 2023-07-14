@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Exam</div>
+  <div class="d-flex page__box p-3 mt-2">Exams</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="container-btns">
       <div class="addBtn">
@@ -82,7 +82,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr
               class="goToExam"
-              (click)="details(row.id)"
+              (click)="details(row)"
               mat-row
               *matRowDef="let row; columns: displayedColumns"
             ></tr>

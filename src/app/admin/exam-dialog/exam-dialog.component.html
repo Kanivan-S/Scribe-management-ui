@@ -1,4 +1,4 @@
-<h2 class="title" mat-dialog-title>Add a exam</h2>
+<h2 class="title" mat-dialog-title>{{ title }} Exam</h2>
 <mat-dialog-content>
   <hr />
   <div class="form">
@@ -24,6 +24,7 @@
         type="datetime-local"
       />
     </mat-form-field>
+    <span *ngIf="originalDate">Original Date: {{ originalDate }}</span>
 
     <table class="full-width" cellspacing="0">
       <tr>
@@ -73,6 +74,6 @@
     [mat-dialog-close]="true"
     cdkFocusInitial
   >
-    Add
+    {{ title === "Add" ? "Add" : "Update" }}
   </button>
 </mat-dialog-actions>

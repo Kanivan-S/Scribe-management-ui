@@ -28,8 +28,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { ExamComponent } from './exam/exam.component';
-import { AddExamComponent } from './add-exam/add-exam.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ExamDialogComponent } from './exam-dialog/exam-dialog.component';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -40,7 +40,7 @@ import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
     AdminComponent,
     DashboardComponent,
     ExamComponent,
-    AddExamComponent,
+    ExamDialogComponent,
   ],
   imports: [
     MatButtonModule,
@@ -72,6 +72,6 @@ import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
     MatProgressSpinnerModule,
     MatSortModule,
   ],
-  entryComponents: [AddExamComponent],
+  entryComponents: [ExamDialogComponent],
 })
 export class AdminModule {}
