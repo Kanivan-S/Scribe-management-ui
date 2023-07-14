@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginRegisterComponent } from '../login-register/login-register.component';
 import { UsersComponent } from './users.component';
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
 const routes:Routes=[
   {
     path:'',
@@ -17,6 +17,10 @@ const routes:Routes=[
         path:'userpage',
         component:DashboardComponent,
 
+      },
+      {
+        path:'profile',
+        component:UserProfileComponent,
       },
 
       {

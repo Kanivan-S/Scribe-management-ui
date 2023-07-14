@@ -51,11 +51,15 @@ export class LoginRegisterComponent implements OnInit {
     if(this.isAdmin==true){
       role=1;
       const form=new FormData();
-      form.append('mail',this.loginForm.get('email').value);
+      form.append('email',this.loginForm.get('email').value);
       form.append('password',this.loginForm.get('password').value);
-      form.append('role',role.toString());
+      // form.append('role',role.toString());
 
-      this.aps.authenticateUser(form).subscribe(
+      const formJson=JSON.stringify({
+        email:this.loginForm.get('email').value,
+        password:this.loginForm.get('password').value
+      })
+      this.aps.authenticateUser(formJson,this.isAdmin).subscribe(
         (data)=>{
           localStorage.clear();
           localStorage.setItem("token",data.body.accept);
@@ -72,11 +76,16 @@ export class LoginRegisterComponent implements OnInit {
     }
     else{
       const form=new FormData();
-      form.append('mail',this.loginForm.get('email').value);
+      form.append('email',this.loginForm.get('email').value);
       form.append('password',this.loginForm.get('password').value);
-      form.append('role',role.toString());
 
-      this.aps.authenticateUser(form).subscribe(
+      const formJson=JSON.stringify({
+        email:this.loginForm.get('email').value,
+        password:this.loginForm.get('password').value
+      })
+      // form.append('role',role.toString());
+
+      this.aps.authenticateUser(formJson,this.isAdmin).subscribe(
         (data)=>{
           localStorage.setItem("token",data.body.accept);
           localStorage.setItem("userType","user");

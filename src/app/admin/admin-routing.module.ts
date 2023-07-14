@@ -20,7 +20,7 @@ const routes:Routes=[
         data: { title: 'Scribe Management' },
       },
       {
-        path: 'profilepage',
+        path: 'profile',
         component: ProfileComponent,
         data: { title: 'Scribe Management-Admin' },
       }

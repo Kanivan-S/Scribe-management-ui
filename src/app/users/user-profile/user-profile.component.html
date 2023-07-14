@@ -1,0 +1,72 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">User-Profile</div>
+  <div class="page__content shadow p-3 position-relative">
+   <div class="container-btns">
+
+    <div>
+      <div class="profile-form-box">
+
+
+        <div>
+          <mat-form-field hintLabel="Max 20 characters" appearance="fill" [formGroup]="userprofileform">
+            <mat-label style="color: #3F51B5;">Name</mat-label>
+            <input matInput  #input maxlength="20" formControlName="username" placeholder="name" style="color: black;" required>
+            <mat-hint align="end">{{input.value.length}}/20</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field  appearance="fill" [formGroup]="userprofileform">
+            <mat-label style="color: #3F51B5;">Contact Number</mat-label>
+            <input matInput maxlength="20" formControlName="usercontact" placeholder="contactno" value="Address" style="color: black;">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="profile-form-box">
+        <div >
+          <mat-form-field  appearance="fill" [formGroup]="userprofileform">
+            <mat-label style="color: #3F51B5;">Email Id</mat-label>
+            <input matInput #input maxlength="20" formControlName="useremail" placeholder="emailid" required style="color: black;">
+          </mat-form-field>
+        </div>
+
+        <div >
+          <mat-form-field appearance="fill" [formGroup]="userprofileform">
+            <mat-label style="color: #3F51B5;">Password</mat-label>
+              <input matInput #input  [type]="hide ? 'password' : 'text'" formControlName="userpswd" placeholder="Passsword" required style="color: black;">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            </mat-form-field>
+        </div>
+
+      </div>
+
+
+
+
+
+        <div class="profile-form-box">
+          <div>
+            <mat-form-field appearance="fill" [formGroup]="userprofileform" style="width: 70%;">
+              <mat-label style="color: #3F51B5;">Address</mat-label>
+              <textarea matInput formControlName="useraddress" required value="afsadf" style="color: black;"></textarea>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+
+
+      <div class="profile-form-submit-btn">
+        <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="toggleEditMode()" >Edit Profile</button>
+        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="showSnackbar()" >Save details</button>
+      </div>
+
+    </div>
+
+   </div>
+  </div>
+</div>
