@@ -27,12 +27,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
+import { ProfileComponent } from './profile/profile.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
         AdminComponent,
         DashboardComponent,
- 
+        ProfileComponent,
+
 
     ],
     imports: [
@@ -59,6 +62,7 @@ import { MatDividerModule } from '@angular/material/divider';
         MatNativeDateModule,
         MatBadgeModule,
         MatSelectModule,
+        MatSnackBarModule
 
     ]
 })
