@@ -1,0 +1,46 @@
+.mainContainer{
+    display:flex;
+    gap:10px;
+    justify-content: space-between;
+    padding:0px 20px;
+}
+
+  .full-width {
+    width: 100%;
+  }
+  
+  .listOfStudents{
+    border:0.5px solid gray;
+    border-top: none;
+    border-bottom: none;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 50;
+    padding:10px 0px;
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+  }
+
+  .student{
+    text-align: center;
+  }
+  .student:hover{
+    background-color: rgb(124, 201, 245);
+    cursor: pointer;
+  }
+
+  .actions{
+    display:flex;
+    gap:10px;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  .choosenE, .choosenE:hover{
+    background-color: rgb(160, 233, 77);
+  }
+
+  .choosenS, .choosenS:hover{
+    background-color: rgb(241, 106, 106);
+  }

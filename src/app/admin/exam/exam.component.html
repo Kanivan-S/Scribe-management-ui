@@ -7,27 +7,6 @@
           Add a exam
         </button>
       </div>
-      <!-- <div class="examsView">
-        <table class="examsTable">
-          <thead>
-            <tr>
-              <th>Exam Name</th>
-              <th>Exam Date</th>
-              <th>Exam Time</th>
-              <th>No of students</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr (click)="details(exam.id)" *ngFor="let exam of exams">
-              <td>{{ exam.name }}</td>
-              <td>{{ exam.date }}</td>
-              <td>{{ exam.time }}</td>
-              <td>{{ exam.noOfStudents }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
-
       <div class="main-container mat-elevation-z8">
         <div class="loading-shade" *ngIf="isLoadingResults || errorOccured">
           <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -49,19 +28,25 @@
             <!-- students registered -->
             <ng-container matColumnDef="students">
               <th mat-header-cell *matHeaderCellDef>Students Registered</th>
-              <td mat-cell *matCellDef="let row">{{ row.noOfStudents }}</td>
+              <td mat-cell *matCellDef="let row">
+                {{ row.noOfStudents }}
+              </td>
             </ng-container>
 
             <!-- exam name -->
             <ng-container matColumnDef="exam-name">
               <th mat-header-cell mat-sort-header *matHeaderCellDef>Exam</th>
-              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+              <td mat-cell *matCellDef="let row">
+                {{ row.name }}
+              </td>
             </ng-container>
 
             <!-- Venue Column -->
             <ng-container matColumnDef="venue">
               <th mat-header-cell mat-sort-header *matHeaderCellDef>Venue</th>
-              <td mat-cell *matCellDef="let row">{{ row.venue }}</td>
+              <td mat-cell *matCellDef="let row">
+                {{ row.venue }}
+              </td>
             </ng-container>
 
             <!-- Date Column -->
@@ -81,11 +66,21 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr
+              [matMenuTriggerFor]="menu"
+              #menuTrigger
               class="goToExam"
-              (click)="details(row)"
               mat-row
               *matRowDef="let row; columns: displayedColumns"
-            ></tr>
+            >
+              <mat-menu #menu="matMenu">
+                <button class="menu-item" mat-menu-item (click)="details(row)">
+                  Edit Exam
+                </button>
+                <button class="menu-item" mat-menu-item (click)="students(row)">
+                  Manage Students
+                </button>
+              </mat-menu>
+            </tr>
           </table>
         </div>
 

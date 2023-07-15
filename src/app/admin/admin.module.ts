@@ -36,49 +36,51 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
-
+import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
+import { StudentExamComponent } from './student-exam/student-exam.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
-    declarations: [
-        AdminComponent,
-        DashboardComponent,
-        ExamComponent,
-        ExamDialogComponent,
-        ProfileComponent
-
-
-    ],
-    imports: [
-      MatButtonModule,
-      MatTabsModule,
-      MatDividerModule,
-      MatOptionModule,
-      MatIconModule,
-      MatTableModule,
-      MatFormFieldModule,
-        CommonModule,
-        NgxMaterialTimepickerModule,
-        SharedModule,
-        MatTooltipModule,
-        MatStepperModule,
-        AdminRoutingModule,
-        MatGridListModule,
-        MatCardModule,
-        MatInputModule,
-        CdkStepperModule,
-        MatSidenavModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatBadgeModule,
-        MatSelectModule,
-        MatDialogModule,
-        FormsModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatSortModule,
-        MatSnackBarModule
-
-    ],
-    entryComponents: [ExamDialogComponent]
+  declarations: [
+    AdminComponent,
+    DashboardComponent,
+    ExamComponent,
+    ExamDialogComponent,
+    ProfileComponent,
+    StudentExamComponent,
+  ],
+  imports: [
+    MatButtonModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatOptionModule,
+    MatIconModule,
+    MatTableModule,
+    MatFormFieldModule,
+    CommonModule,
+    NgxMaterialTimepickerModule,
+    SharedModule,
+    MatTooltipModule,
+    MatStepperModule,
+    AdminRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatInputModule,
+    CdkStepperModule,
+    MatSidenavModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatBadgeModule,
+    MatSelectModule,
+    MatDialogModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+  ],
+  entryComponents: [ExamDialogComponent, StudentExamComponent],
 })
 export class AdminModule {}

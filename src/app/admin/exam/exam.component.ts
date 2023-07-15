@@ -6,13 +6,15 @@ import { MatSort, SortDirection } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { merge, Observable, of as observableOf, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-
+import { MatMenuTrigger } from '@angular/material/menu';
+import { StudentExamComponent } from '../student-exam/student-exam.component';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
   styleUrls: ['./exam.component.scss'],
 })
 export class ExamComponent implements OnInit {
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -24,17 +26,17 @@ export class ExamComponent implements OnInit {
       width: '80%',
       data: { type: 'edit', ...exam },
     });
-    //open a particular exam details from here
-    console.log(exam);
+  }
+  students(row) {
+    this.dialog.open(StudentExamComponent, {
+      width: '85%',
+      data: row.id,
+    });
   }
   addExam() {
-    const dialogRef = this.dialog.open(ExamDialogComponent, {
+    this.dialog.open(ExamDialogComponent, {
       width: '80%',
       data: { type: 'add' },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

@@ -1,0 +1,70 @@
+<h2 class="title" mat-dialog-title>Add/Remove students for exam</h2>
+<mat-dialog-content>
+  <hr />
+  <div class="mainContainer">
+    <div class="subContainer">
+      <h4>Eligible Students</h4>
+      <mat-form-field class="full-width">
+        <mat-label>Student's name/rollno</mat-label>
+        <input
+          (input)="searchInEligible()"
+          matInput
+          [(ngModel)]="filterEligible"
+        />
+      </mat-form-field>
+      <div class="listOfStudents">
+        <span
+          [ngClass]="{ choosenE: toBeSelected.includes(student.rollNo) }"
+          (click)="handleClickEligible(student.rollNo)"
+          *ngFor="let student of filteredEligibleStudents"
+          class="student"
+        >
+          {{ student.name }} {{ student.rollNo }}
+        </span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="selectStudents()" mat-raised-button color="basic">
+        {{ ">" + (!!toBeSelected.length ? toBeSelected.length : "") }}
+      </button>
+      <button (click)="removeStudents()" mat-raised-button color="basic">
+        {{ (!!toBeRemoved.length ? toBeRemoved.length : "") + "<" }}
+      </button>
+    </div>
+    <div class="subContainer">
+      <h4>Selected Students</h4>
+      <mat-form-field class="full-width">
+        <mat-label>Student's name/rollno</mat-label>
+        <input
+          (input)="searchInSelected()"
+          matInput
+          [(ngModel)]="filterSelected"
+        />
+      </mat-form-field>
+      <div class="listOfStudents">
+        <span
+          [ngClass]="{ choosenS: toBeRemoved.includes(student.rollNo) }"
+          (click)="handleClickSelected(student.rollNo)"
+          *ngFor="let student of filteredSelectedStudents"
+          class="student"
+        >
+          {{ student.name }} {{ student.rollNo }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr />
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    (click)="update()"
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Update
+  </button>
+</mat-dialog-actions>

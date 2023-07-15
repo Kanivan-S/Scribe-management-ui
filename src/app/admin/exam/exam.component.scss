@@ -32,28 +32,6 @@
   margin:10px auto;
 }
 
-// table{
-//   width:100%;
-//   border:2px solid black;
-// }
-
-// tr{
-//   width:100%;
-//   border:1px solid gray;
-// }
-// tbody>tr:hover{
-//   cursor:pointer;
-// }
-// th{
-//   border-color: white;
-//   color: white;
-//   padding: 5px 0;
-//   background:#1e293b;
-// }
-// th, td{
-//   text-align: center;
-// }
-
 /* Structure */
 .main-container {
   position: relative;
@@ -102,4 +80,8 @@ table {
 .goToExam:hover{
   background-color: rgb(158, 211, 211);
   cursor: pointer;
+}
+
+.menu-item:hover{
+  background-color:rgb(71, 100, 231);
 }
