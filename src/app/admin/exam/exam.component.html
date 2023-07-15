@@ -31,7 +31,7 @@
       <div class="main-container mat-elevation-z8">
         <div class="loading-shade" *ngIf="isLoadingResults || errorOccured">
           <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-          <div class="errorOccured" ngIf="errorOccured">
+          <div class="errorOccured" *ngIf="errorOccured">
             Some error occured ...
           </div>
         </div>
