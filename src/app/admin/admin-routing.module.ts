@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ExamComponent } from './exam/exam.component';
 const routes:Routes=[
   {
     path:'',
@@ -23,6 +24,11 @@ const routes:Routes=[
         path: 'profile',
         component: ProfileComponent,
         data: { title: 'Scribe Management-Admin' },
+      },
+      {
+        path: 'exam',
+        component: ExamComponent,
+        data: { title: 'Scribe Management' },
       }
     ]
   },
