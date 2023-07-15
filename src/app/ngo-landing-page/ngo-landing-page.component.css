@@ -1,0 +1,109 @@
+.ngo-landing-page {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  
+  header {
+    margin-bottom: 30px;
+  }
+  
+  nav {
+    background-color: #000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  ul li {
+    margin-right: 20px;
+  }
+  
+  ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .hero {
+    background-image: url('https://www.commonground.work/wp-content/uploads/2022/09/Environmental-NGO.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 0;
+  }
+  
+  .hero-content {
+    margin-bottom: 30px;
+  }
+  
+  .hero-content h1 {
+    font-size: 36px;
+    
+    margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c6002e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .content-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  .content {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .content p {
+    margin-bottom: 20px;
+  }
+  
+  .read-more-link {
+    color: #c6002e;
+    text-decoration: none;
+  }
+  
+  .image-container {
+    flex: 1;
+    margin-left: 30px;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    padding-top: 50px;
+  }
+  
+  footer {
+    margin-top: 50px;
+    color: #666;
+  }
+  
