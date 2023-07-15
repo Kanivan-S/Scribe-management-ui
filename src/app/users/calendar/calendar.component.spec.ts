@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamDialogComponent } from './exam-dialog.component';
+import { CalendarComponent } from './calendar.component';
 
-describe('AddExamComponent', () => {
-  let component: ExamDialogComponent;
-  let fixture: ComponentFixture<ExamDialogComponent>;
+describe('CalendarComponent', () => {
+  let component: CalendarComponent;
+  let fixture: ComponentFixture<CalendarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ExamDialogComponent],
-    }).compileComponents();
+      declarations: [ CalendarComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamDialogComponent);
+    fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

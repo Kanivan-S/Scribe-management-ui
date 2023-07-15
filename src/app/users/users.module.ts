@@ -25,12 +25,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import{MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
     declarations: [
       UsersComponent,
       DashboardComponent,
+      UserProfileComponent,
+      CalendarComponent,
     ],
     imports: [
         CommonModule,
@@ -66,6 +70,7 @@ import { MatDividerModule } from '@angular/material/divider';
           MatNativeDateModule,
           MatBadgeModule,
           MatSelectModule,
+          MatSnackBarModule
     ]
 })
 export class UsersModule { }

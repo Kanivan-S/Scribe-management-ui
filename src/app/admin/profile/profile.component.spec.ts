@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamDialogComponent } from './exam-dialog.component';
+import { ProfileComponent } from './profile.component';
 
-describe('AddExamComponent', () => {
-  let component: ExamDialogComponent;
-  let fixture: ComponentFixture<ExamDialogComponent>;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ExamDialogComponent],
-    }).compileComponents();
+      declarations: [ ProfileComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamDialogComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
