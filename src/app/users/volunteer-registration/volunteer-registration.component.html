@@ -1,0 +1,14 @@
+<h2>Volunteer Registration</h2>
+
+<div class="form-container">
+  <mat-form-field class="exam-select-field">
+    <mat-label>Select Exam</mat-label>
+    <mat-select [(ngModel)]="selectedExamId" placeholder="Select an exam">
+      <mat-option *ngFor="let exam of availableExams" [value]="exam.id">
+        {{ exam.id }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="registerVolunteer()">Register</button>
+</div>

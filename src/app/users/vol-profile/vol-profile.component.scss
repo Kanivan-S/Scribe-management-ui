@@ -1,0 +1,37 @@
+.profile-container {
+  background-color: #22b40c;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-heading {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.volunteer-id {
+  background-color: pink;
+  color: Black;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+ul li {
+  animation: fadeIn 0.5s ease;
+  background-color: #c5bb2a;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}

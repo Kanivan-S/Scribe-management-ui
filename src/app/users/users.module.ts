@@ -27,10 +27,12 @@ import { MatTableModule } from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { MatDividerModule } from '@angular/material/divider';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 @NgModule({
     declarations: [
       UsersComponent,
       DashboardComponent,
+      ConfirmationComponent,
     ],
     imports: [
         CommonModule,

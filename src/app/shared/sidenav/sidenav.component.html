@@ -5,19 +5,25 @@
   <mat-divider></mat-divider>
   <h2 matSubheader class="mt-2">Navigation</h2>
 
-  <div >
+  <div>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="home">
       <mat-icon>B</mat-icon> B-Nav btn
     </a>
-      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="newadding">
-        <mat-icon>Create </mat-icon> C-Nav btn
-      </a>
-      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="userstatus">
-        <mat-icon>U </mat-icon> U-Nav btn
-      </a>
+    <a *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="newadding">
+      <mat-icon>Create</mat-icon> C-Nav btn
+    </a>
+    <a *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="userstatus">
+      <mat-icon>U</mat-icon> U-Nav btn
+    </a>
 
-     
-
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="volunteer-registration">
+      <mat-icon>AssignmentInd</mat-icon> Volunteer More
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="profile">
+      <mat-icon>Person</mat-icon> Profile-Upcoming Events
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="confirmation">
+      <mat-icon>Person</mat-icon> Response Page
+    </a>
   </div>
-
 </mat-nav-list>

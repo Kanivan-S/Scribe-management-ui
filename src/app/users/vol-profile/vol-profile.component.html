@@ -1,0 +1,12 @@
+<h2 class="profile-heading">Profile</h2>
+
+<p class="volunteer-id">Volunteer ID: {{ volunteerId }}</p>
+
+<h4>Registered Exams:</h4>
+<ul>
+  <li *ngFor="let exam of registeredExams">
+   <B> Exam ID: </B> {{ exam.id }}<br>
+   <B>  Date: </B> {{ exam.date }}<br>
+   <B>  Time:</B>  {{ exam.time }}
+  </li>
+</ul>

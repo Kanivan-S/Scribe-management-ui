@@ -16,12 +16,22 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from "./shared/shared.module";
+import { VolunteerRegistrationComponent } from './users/volunteer-registration/volunteer-registration.component';
+import { ProfileComponent } from './users/vol-profile/vol-profile.component';
+
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginRegisterComponent,
+        VolunteerRegistrationComponent,
+        ProfileComponent,
+   
+       
 
     ],
     providers: [],
@@ -34,6 +44,9 @@ import { SharedModule } from "./shared/shared.module";
         MatSidenavModule,
         FormsModule, ReactiveFormsModule,
         MatToolbarModule,
+
+        
+        MatSelectModule,
         MatFormFieldModule,
         MatMenuModule,
         MatIconModule,
