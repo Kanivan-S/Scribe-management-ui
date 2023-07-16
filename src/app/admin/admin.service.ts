@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { API } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
@@ -11,13 +11,14 @@ export class AdminService {
 
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute) {}
 
-  addExamples(form:FormData){
-    return this.http.post<any>(`${API}/admin/addDetails`,form,{observe:'response'});
+  getAdminProfileService(emailid:String){
+    return this.http.get<any>(`${API}/admin/profile/`+emailid);
   }
-  gettersExample() {
-    return this.http
-        .get<any>(`${API}/admin/getDetails`);
-    }
 
-
+  updateProfile(form:String,id:string){
+    const  headers=new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+    return this.http.put<any>(`${API}/admin/profile/`+id,form,{headers:headers,observe:'response'});
+  }
 }

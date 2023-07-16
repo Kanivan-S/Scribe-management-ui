@@ -26,8 +26,11 @@ export class AppService {
 
 
   }
-  authenticateRegister(form :FormData){
-    return this.http.post<any>(`${API}/authenticate/register`,form,{observe:'response'});
+  authenticateRegister(form:String){
+    const  headers=new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+    return this.http.post<any>(`${API}/volunteer/register`,form,{headers:headers,observe:'response'});
   }
   logout(){
     localStorage.clear();

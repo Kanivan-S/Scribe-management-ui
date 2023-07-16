@@ -3,8 +3,8 @@
   <div class="page__content shadow p-3 position-relative">
    <div class="container-btns">
 
-    <div>
-      <div class="profile-form-box">
+    <div *ngIf="!isLoading">
+      <div class="profile-form-box" >
 
 
         <div>
@@ -34,11 +34,9 @@
 
         <div >
           <mat-form-field appearance="fill" [formGroup]="userprofileform">
-            <mat-label style="color: #3F51B5;">Password</mat-label>
-              <input matInput #input  [type]="hide ? 'password' : 'text'" formControlName="userpswd" placeholder="Passsword" required style="color: black;">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            <mat-label style="color: #3F51B5;">User Id</mat-label>
+              <input matInput #input  formControlName="userid" placeholder="User Id" required style="color: black;">
+
             </mat-form-field>
         </div>
 
@@ -52,7 +50,7 @@
           <div>
             <mat-form-field appearance="fill" [formGroup]="userprofileform" style="width: 70%;">
               <mat-label style="color: #3F51B5;">Address</mat-label>
-              <textarea matInput formControlName="useraddress" required value="afsadf" style="color: black;"></textarea>
+              <textarea matInput formControlName="useraddress" required style="color: black;"></textarea>
             </mat-form-field>
           </div>
 
@@ -62,7 +60,7 @@
 
       <div class="profile-form-submit-btn">
         <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="toggleEditMode()" >Edit Profile</button>
-        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="showSnackbar()" >Save details</button>
+        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="updateProfile()" >Save details</button>
       </div>
 
     </div>

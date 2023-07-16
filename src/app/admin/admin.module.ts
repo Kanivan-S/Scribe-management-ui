@@ -39,6 +39,11 @@ import { MatSort, MatSortModule, SortDirection } from '@angular/material/sort';
 import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { StudentExamComponent } from './student-exam/student-exam.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { StudentsComponent } from './students/students.component';
+import { StudentDialogComponent } from './student-dialog/student-dialog.component';
+import { AddstudentDialogComponent } from './addstudent-dialog/addstudent-dialog.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -47,6 +52,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ExamDialogComponent,
     ProfileComponent,
     StudentExamComponent,
+    StudentsComponent,
+    StudentDialogComponent,
+    AddstudentDialogComponent,
+    CalendarComponent,
   ],
   imports: [
     MatButtonModule,

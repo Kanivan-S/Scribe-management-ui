@@ -15,6 +15,8 @@ export class LoginRegisterComponent implements OnInit {
   registerForm: FormGroup;
   loginError:string;
   logo:string;
+  hide :boolean= true;
+
 
 
   public showPassword: boolean = false;
@@ -27,9 +29,9 @@ export class LoginRegisterComponent implements OnInit {
       password: new FormControl(null, Validators.required),
     })
     this.registerForm = new FormGroup({
-      uname:new FormControl(null,Validators.required),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
+      uname:new FormControl('',Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
    }
 
@@ -43,54 +45,41 @@ export class LoginRegisterComponent implements OnInit {
   onLogin(){
 
     const url=Array.from(this.route.snapshot.url);
-    let role=2;
-    const formval={
-      "email":this.loginForm.get('email').value,
-      "password":this.loginForm.get('password').value,
-    }
     if(this.isAdmin==true){
-      role=1;
-      const form=new FormData();
-      form.append('email',this.loginForm.get('email').value);
-      form.append('password',this.loginForm.get('password').value);
-      // form.append('role',role.toString());
-
       const formJson=JSON.stringify({
         email:this.loginForm.get('email').value,
         password:this.loginForm.get('password').value
       })
       this.aps.authenticateUser(formJson,this.isAdmin).subscribe(
-        (data)=>{
-          localStorage.clear();
-          localStorage.setItem("token",data.body.accept);
-          localStorage.setItem("userType","admin");
-          localStorage.setItem("userName",data.body.name);
-
-          this.router.navigate(['admin']);
+        (data:any)=>{
+          if(data){
+            localStorage.clear();
+            localStorage.setItem("email",data.body.email);
+            localStorage.setItem("id",data.body.id);
+            this.router.navigate(['admin']);
+          }
+          else{
+            alert("Server Request Try again.");
+          }
         },
         (err)=>{
           alert("Invalid credentials for admin login..\n");
-          console.log(err);
         }
        )
     }
     else{
-      const form=new FormData();
-      form.append('email',this.loginForm.get('email').value);
-      form.append('password',this.loginForm.get('password').value);
 
       const formJson=JSON.stringify({
         email:this.loginForm.get('email').value,
         password:this.loginForm.get('password').value
       })
-      // form.append('role',role.toString());
 
       this.aps.authenticateUser(formJson,this.isAdmin).subscribe(
         (data)=>{
-          localStorage.setItem("token",data.body.accept);
-          localStorage.setItem("userType","user");
-           localStorage.setItem("userName",data.body.name);
-          this.router.navigate(['user']);
+          localStorage.clear();
+          localStorage.setItem("email",data.body.email);
+          localStorage.setItem("id",data.body.id);
+            this.router.navigate(['user']);
         },
         (err)=>{
           alert("Error in login credentials for user..\n");
@@ -100,26 +89,28 @@ export class LoginRegisterComponent implements OnInit {
     }
   }
   onRegister(){
-    const form=new FormData();
-    form.append('uname',this.registerForm.get('uname').value);
-    form.append('mail',this.registerForm.get('email').value);
-    form.append('password',this.registerForm.get('password').value);
-    this.aps.authenticateRegister(form).subscribe(
+    console.log(this.registerForm);
+    const formJson=JSON.stringify({
+      email:this.registerForm.get("email").value,
+      password:this.registerForm.get("password").value,
+      name:this.registerForm.get("uname").value
+    })
+
+
+    this.aps.authenticateRegister(formJson).subscribe(
     (data)=>{
       alert("user registered!");
-      localStorage.setItem("token",data.body.accept);
-          localStorage.setItem("userType","user");
-           localStorage.setItem("userName",data.body.name);
+      localStorage.setItem("email",data.body.email);
+
+           localStorage.setItem("id",data.body.id);
            this.router.navigate(['user']);
     },
     (err)=>{
-      alert("Already exists\n");
+      alert("Error in Register\n");
       this.loginError=err;
       console.log(err);
     }
     )
-
-
   }
 
 }

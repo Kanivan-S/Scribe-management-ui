@@ -5,16 +5,23 @@ import {AdminService} from '../admin.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
-
+interface AdminProfile{
+  id:string;
+  email:string;
+  name:string;
+  phone:string;
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  isLoading:boolean =true;
   adminprofileform:FormGroup;
   hide :boolean= true;
   isEditMode: boolean = false;
+  admninProfile:AdminProfile;
   constructor(private router:Router,private route:ActivatedRoute,private adser:AdminService,private snackBar: MatSnackBar) {
   }
   toggleEditMode() {
@@ -36,27 +43,56 @@ export class ProfileComponent implements OnInit {
       adminpswd.disable();
     }
   }
- 
 
-
-  showSnackbar() {
-    this.snackBar.open('Updated Successfully', 'Close', {
+  showSnackbar(msg:string) {
+    this.snackBar.open(msg, 'Close', {
       duration: 3000, // Duration in milliseconds
     });
     this.toggleEditMode();
   }
 
+  updateProfile(){
+    const formJson=JSON.stringify({
+      address:this.adminprofileform.get("adminaddress").value,
+      phone:this.adminprofileform.get("admincontact").value,
+      name:this.adminprofileform.get("adminname").value
 
-
-  ngOnInit(): void {
-    this.adminprofileform=new FormGroup({
-      adminname:new FormControl({value:'AdminName',disabled: !this.isEditMode },[Validators.required]),
-      adminemail:new FormControl({value:'admin@admin.com',disabled: !this.isEditMode}, [Validators.required, Validators.email]),
-      admincontact:new FormControl({value:'+10 4412 0993 234',disabled: !this.isEditMode},[Validators.required]),
-      adminpswd:new FormControl({value:'password',disabled: !this.isEditMode},[Validators.required]),
-      adminaddress:new FormControl({value:'Admin Address Details',disabled: !this.isEditMode},[Validators.required])
     })
+    console.log(formJson);
+    this.adser.updateProfile(formJson,localStorage.getItem('email')).subscribe(
+    (data)=>{
+      this.showSnackbar('Updated Successfully');
+    },
+    (err)=>{
+      this.showSnackbar("Error in Update Profile\n");
+    }
+    )
 
   }
 
+
+  ngOnInit(): void {
+    this.getAdminProfile();
+  }
+
+  getAdminProfile():void{
+    this.adser.getAdminProfileService(localStorage.getItem('email')).subscribe(
+      (data)=>{
+        this.admninProfile=data;
+        console.log(data);
+        this.isLoading=false;
+        this.adminprofileform=new FormGroup({
+          adminname:new FormControl({value:this.admninProfile["name"]!==null?this.admninProfile["name"] :"NA",disabled: !this.isEditMode},[Validators.required]),
+          admincontact:new FormControl({value:this.admninProfile["phone"]!==null?this.admninProfile["phone"] :"NA",disabled: !this.isEditMode},[Validators.required]),
+          adminpswd:new FormControl({value:this.admninProfile["id"]!==null?this.admninProfile["id"] :"NA",disabled: true},[Validators.required]),
+          adminemail:new FormControl({value:this.admninProfile["email"]!==null?this.admninProfile["email"] :"NA",disabled: true}, [Validators.required, Validators.email]),
+          adminaddress:new FormControl({value:this.admninProfile["address"]!==null?this.admninProfile["address"] :"NA",disabled: !this.isEditMode},[Validators.required])
+        })
+      }
+    )
+
+  }
+
+
 }
+

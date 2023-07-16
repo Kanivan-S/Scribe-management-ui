@@ -1,0 +1,87 @@
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 120px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 2em;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1em;
+    // &-data {
+    //   top: 50%;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    // }
+  }
+}
+
+.addBtn{
+display:flex;
+justify-content: end;
+}
+
+.examsView{
+margin:10px auto;
+}
+
+/* Structure */
+.main-container {
+position: relative;
+margin-top:10px;
+}
+
+.table-container {
+position: relative;
+min-height: 200px;
+max-height: 400px;
+overflow: auto;
+}
+
+table {
+width: 100%;
+}
+
+.loading-shade {
+position: absolute;
+top: 0;
+left: 0;
+bottom: 56px;
+right: 0;
+background: rgba(0, 0, 0, 0.15);
+z-index: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.errorOccured{
+max-width: 360px;
+text-align: center;
+}
+
+/* Column Widths */
+.mat-column-students,
+.mat-column-state {
+max-width: 64px;
+}
+
+.mat-column-exam\-date {
+max-width: 124px;
+}
+
+.goToExam:hover{
+background-color: rgb(158, 211, 211);
+cursor: pointer;
+}
+
+.menu-item:hover{
+background-color:rgb(71, 100, 231);
+}
