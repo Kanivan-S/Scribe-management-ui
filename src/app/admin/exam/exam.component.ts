@@ -8,6 +8,8 @@ import { merge, Observable, of as observableOf, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StudentExamComponent } from '../student-exam/student-exam.component';
+import { VolunteerExamComponent } from '../volunteer-exam/volunteer-exam.component';
+import { Exam } from '../model';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -33,6 +35,13 @@ export class ExamComponent implements OnInit {
       data: row.id,
     });
   }
+  volunteers(row) {
+    this.dialog.open(VolunteerExamComponent, {
+      width: '85%',
+      data: row.id,
+    });
+  }
+
   addExam() {
     this.dialog.open(ExamDialogComponent, {
       width: '80%',
@@ -82,17 +91,6 @@ export class ExamComponent implements OnInit {
 export interface Exams {
   items: Exam[];
   total_count: number;
-}
-
-export interface Exam {
-  id: string;
-  date: Date;
-  name: string;
-  venue: string;
-  noOfStudents: number;
-  city: string;
-  state: string;
-  postalCode: string;
 }
 
 export class ExamDataSource {

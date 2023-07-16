@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Student } from '../model';
 
 @Component({
   selector: 'app-student-exam',
@@ -133,11 +134,4 @@ export class StudentExamComponent implements OnInit {
     console.log(this.registeredStudents);
     //api call here..
   }
-}
-
-export interface Student {
-  name: string;
-  rollNo: string;
-  class: string;
-  section: string;
 }
