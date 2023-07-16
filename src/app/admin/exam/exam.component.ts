@@ -11,6 +11,7 @@ import { StudentExamComponent } from '../student-exam/student-exam.component';
 import { AddExamdialogComponent } from '../add-examdialog/add-examdialog.component';
 import { UsersServiceService } from 'src/app/users/users-service.service';
 import { AdminService } from '../admin.service';
+import { VolunteerExamComponent } from '../volunteer-exam/volunteer-exam.component';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -51,6 +52,13 @@ export class ExamComponent implements OnInit {
     this.dialog.open(AddExamdialogComponent, {
       width: '80%',
       data: { type: 'add' },
+    });
+  }
+
+  volunteers(row) {
+    this.dialog.open(VolunteerExamComponent, {
+      width: '85%',
+      data: row.id,
     });
   }
 

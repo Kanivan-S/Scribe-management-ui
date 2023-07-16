@@ -44,6 +44,7 @@ import { StudentDialogComponent } from './student-dialog/student-dialog.componen
 import { AddstudentDialogComponent } from './addstudent-dialog/addstudent-dialog.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AddExamdialogComponent } from './add-examdialog/add-examdialog.component';
+import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AddExamdialogComponent } from './add-examdialog/add-examdialog.componen
     AddstudentDialogComponent,
     CalendarComponent,
     AddExamdialogComponent,
+    VolunteerExamComponent,
   ],
   imports: [
     MatButtonModule,
