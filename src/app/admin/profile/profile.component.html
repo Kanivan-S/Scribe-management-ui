@@ -3,15 +3,14 @@
   <div class="page__content shadow p-3 position-relative">
    <div class="container-btns">
 
-    <div>
-      <div class="profile-form-box">
+    <div *ngIf="!isLoading">
+      <div class="profile-form-box" >
 
 
         <div>
           <mat-form-field hintLabel="Max 20 characters" appearance="fill" [formGroup]="adminprofileform">
             <mat-label style="color: #3F51B5;">Name</mat-label>
-            <input matInput  #input maxlength="20" formControlName="adminname" placeholder="name" style="color: black;" required>
-            <mat-hint align="end">{{input.value.length}}/20</mat-hint>
+            <input matInput  maxlength="20" formControlName="adminname" placeholder="name" style="color: black;" required>
           </mat-form-field>
         </div>
 
@@ -32,14 +31,18 @@
           </mat-form-field>
         </div>
 
-        <div >
-          <mat-form-field appearance="fill" [formGroup]="adminprofileform">
-            <mat-label style="color: #3F51B5;">Password</mat-label>
-              <input matInput #input  [type]="hide ? 'password' : 'text'" formControlName="adminpswd" placeholder="Passsword" required style="color: black;">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            </mat-form-field>
+        <div>
+          <mat-form-field  appearance="fill" [formGroup]="adminprofileform">
+            <mat-label style="color: #3F51B5;">Admin Id</mat-label>
+            <input matInput maxlength="20" formControlName="adminpswd" placeholder="contactno" required style="color: black;">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field  appearance="fill" [formGroup]="adminprofileform">
+            <mat-label style="color: #3F51B5;">Email Id</mat-label>
+            <input matInput maxlength="20" formControlName="adminemail" placeholder="contactno" required style="color: black;">
+          </mat-form-field>
         </div>
 
       </div>
@@ -62,7 +65,7 @@
 
       <div class="profile-form-submit-btn">
         <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="toggleEditMode()" >Edit Profile</button>
-        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="showSnackbar()" >Save details</button>
+        <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="updateProfile()" >Save details</button>
       </div>
 
     </div>

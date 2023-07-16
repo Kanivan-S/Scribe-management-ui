@@ -6,8 +6,8 @@ export const environment = {
   production: false
 };
 
-// export const API = 'http://localhost:8080'; //Local Server
-export const  API='http://192.168.7.76:8080'
+export const API = 'http://localhost:8080'; //Local Server
+// export const  API='http://172.20.127.196:8080'
 export const IMG_URL = 'assets/img';
 
 //role=1 admin

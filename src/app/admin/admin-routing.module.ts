@@ -4,6 +4,9 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExamComponent } from './exam/exam.component';
+import { StudentExamComponent } from './student-exam/student-exam.component';
+import { StudentsComponent } from './students/students.component';
+import { CalendarComponent } from './calendar/calendar.component';
 const routes:Routes=[
   {
     path:'',
@@ -29,7 +32,18 @@ const routes:Routes=[
         path: 'exam',
         component: ExamComponent,
         data: { title: 'Scribe Management' },
-      }
+      },
+      {
+        path:'students',
+        component:StudentsComponent,
+        data: { title: 'Scribe Management' }
+      },
+      {
+        path:'calendar',
+        component:CalendarComponent,
+        data: { title: 'Scribe Management' }
+      },
+
     ]
   },
 

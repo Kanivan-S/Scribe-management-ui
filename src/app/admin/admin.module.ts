@@ -40,6 +40,11 @@ import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { StudentExamComponent } from './student-exam/student-exam.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.component';
+import { StudentsComponent } from './students/students.component';
+import { StudentDialogComponent } from './student-dialog/student-dialog.component';
+import { AddstudentDialogComponent } from './addstudent-dialog/addstudent-dialog.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -49,6 +54,10 @@ import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.componen
     ProfileComponent,
     StudentExamComponent,
     VolunteerExamComponent,
+    StudentsComponent,
+    StudentDialogComponent,
+    AddstudentDialogComponent,
+    CalendarComponent,
   ],
   imports: [
     MatButtonModule,

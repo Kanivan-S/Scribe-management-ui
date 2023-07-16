@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from "./shared/shared.module";
 import {MatCardModule} from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
+        MatTableModule,
         BrowserModule,
         MatTabsModule,
         AppRoutingModule,
