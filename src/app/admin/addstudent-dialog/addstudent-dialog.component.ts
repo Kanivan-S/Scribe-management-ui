@@ -28,10 +28,37 @@ export class AddstudentDialogComponent implements OnInit {
 
 
 
- showSnackbar() {
-   this.snackBar.open('Updated Successfully', 'Close', {
+ showSnackbar(msg:string) {
+   this.snackBar.open(msg, 'Close', {
      duration: 3000, // Duration in milliseconds
    });
+
+ }
+
+ addStudent(){
+  const formJson=JSON.stringify({
+    name:this.stdprofileform.get('stdname').value,
+    address:this.stdprofileform.get('stdaddress').value,
+    parentemail:this.stdprofileform.get('stdemail').value,
+    fathername:this.stdprofileform.get('stdfathername').value,
+    mothername:this.stdprofileform.get('stdmothername').value,
+    rollno:this.stdprofileform.get('stdrollnum').value,
+    phone:this.stdprofileform.get('stdcontact').value
+  })
+
+  console.log(formJson);
+
+  this.adser.addStudents(formJson).subscribe(
+    (data)=>{
+      this.showSnackbar('Added Successfully');
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
+    },
+    (err)=>{
+      this.showSnackbar("Error in adding student details\n");
+    }
+  )
 
  }
 

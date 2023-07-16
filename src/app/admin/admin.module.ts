@@ -43,6 +43,7 @@ import { StudentsComponent } from './students/students.component';
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
 import { AddstudentDialogComponent } from './addstudent-dialog/addstudent-dialog.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AddExamdialogComponent } from './add-examdialog/add-examdialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     StudentDialogComponent,
     AddstudentDialogComponent,
     CalendarComponent,
+    AddExamdialogComponent,
   ],
   imports: [
     MatButtonModule,

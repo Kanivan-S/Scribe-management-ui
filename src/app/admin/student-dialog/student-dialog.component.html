@@ -68,7 +68,7 @@
         <div>
           <mat-form-field appearance="fill" [formGroup]="stdprofileform" style="width: 70%;">
             <mat-label style="color: #3F51B5;">Address</mat-label>
-            <textarea matInput formControlName="stdaddress" required value="afsadf" style="color: black;"></textarea>
+            <textarea matInput formControlName="stdaddress" required  style="color: black;"></textarea>
           </mat-form-field>
         </div>
 
@@ -78,7 +78,7 @@
 
     <div class="profile-form-submit-btn">
       <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="toggleEditMode()" >Edit Profile</button>
-      <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="showSnackbar()" >Save details</button>
+      <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="updateStudentDetail()" >Save details</button>
     </div>
 
   </div>

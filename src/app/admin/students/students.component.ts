@@ -10,6 +10,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { StudentExamComponent } from '../student-exam/student-exam.component';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { AddstudentDialogComponent } from '../addstudent-dialog/addstudent-dialog.component';
+import { UsersServiceService } from 'src/app/users/users-service.service';
 
 @Component({
   selector: 'app-students',
@@ -23,9 +24,10 @@ export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['S-No',  'Roll Number', 'Student-Name' ];
   data: Student[] = [];
 
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog) {}
+  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:UsersServiceService) {}
 
   ngOnInit(): void {
+    this.fetchstudents();
   }
 
   addStudent() {
@@ -34,10 +36,10 @@ export class StudentsComponent implements OnInit {
       data: { type: 'add' },
     });
   }
-  details(exam) {
+  details(row) {
     this.dialog.open(StudentDialogComponent, {
       width: '60%',
-      data: { type: 'edit', ...exam },
+      data: { type: 'edit', ...row },
     });
   }
 
@@ -59,7 +61,7 @@ export class StudentsComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.database!.getExams(
+          return this.database!.getstds(
             this.sort.active,
             this.sort.direction,
             this.paginator.pageIndex
@@ -77,6 +79,29 @@ export class StudentsComponent implements OnInit {
       )
       .subscribe((data) => (this.data = data));
   }
+
+  fetchstudents(){
+
+    this.adser.getStudents().subscribe((data)=>{
+      this.data=data.body.map((c,index)=>{
+        return{
+          sno:index+1,
+          name:c.name,
+          rollno:c.rollno,
+          id:c.id,
+          address:c.address,
+          fathername:c.fathername,
+          mothername:c.mothername,
+          parentemail:c.parentemail,
+          phone:c.phone
+        }
+      })
+      console.log(this.data);
+
+    }
+    )
+
+  }
 }
 
 
@@ -88,44 +113,34 @@ export interface StudentsList {
 export interface Student {
   sno:Number;
   name: string;
-  rollnum: string;
+  rollno: string;
+  id:string,
+  address:string,
+  fathername:string,
+  mothername:string,
+  parentemail:string,
+  phone:string
 }
 
 export class StudentDataSource {
   constructor(private _httpClient: HttpClient) {}
 
-  exams: Student[] = [
-    {
-      sno:1,
-      name: "1string",
-      rollnum: "2string",
-    },
-    {
-      sno:2,
-      name: "2string",
-      rollnum: "2string",
-    },
-    {
-      sno:3,
-      name: "3string",
-      rollnum: "3string",
-    },
+  stds: Student[] = [
+
   ];
 
   sampleReturn: StudentsList = {
-    items: this.exams,
+    items: this.stds,
     total_count: 3,
   };
 
-  getExams(
+  getstds(
     sort: string,
     order: SortDirection,
     page: number
   ): Observable<StudentsList> {
     console.log(sort, order, page);
-    //return sorted result from backend...
     return of(this.sampleReturn);
-    // return this._httpClient.get<Exams>(requestUrl);
   }
 }
 

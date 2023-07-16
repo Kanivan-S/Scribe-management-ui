@@ -8,6 +8,8 @@ import { merge, Observable, of as observableOf, of } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StudentExamComponent } from '../student-exam/student-exam.component';
+import { AddExamdialogComponent } from '../add-examdialog/add-examdialog.component';
+import { UsersServiceService } from 'src/app/users/users-service.service';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -17,10 +19,21 @@ export class ExamComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  examslist:Exam[]=[];
+  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:UsersServiceService) {}
 
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog) {}
+  fectchExamlist(){
+    this.adser.getExamlist().subscribe(
+      (data)=>{
+        this.data=data.body;
+      }
+    )
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fectchExamlist();
+    // console.log(this.examslist);
+  }
   details(exam) {
     this.dialog.open(ExamDialogComponent, {
       width: '80%',
@@ -34,13 +47,13 @@ export class ExamComponent implements OnInit {
     });
   }
   addExam() {
-    this.dialog.open(ExamDialogComponent, {
+    this.dialog.open(AddExamdialogComponent, {
       width: '80%',
       data: { type: 'add' },
     });
   }
 
-  displayedColumns: string[] = ['exam-date', 'exam-name', 'venue', 'students'];
+  displayedColumns: string[] = ['exam-date', 'exam-name', 'desc','city'];
   database: ExamDataSource | null;
   data: Exams[] = [];
 
@@ -85,50 +98,21 @@ export interface Exams {
 }
 
 export interface Exam {
+  sno:number;
   id: string;
-  date: Date;
   name: string;
-  venue: string;
-  noOfStudents: number;
+  desc: string;
+  date: Date;
   city: string;
   state: string;
-  postalCode: string;
+  postalcode: string;
 }
 
 export class ExamDataSource {
   constructor(private _httpClient: HttpClient) {}
 
   exams: Exam[] = [
-    {
-      id: 'xyz',
-      name: 'first name',
-      date: new Date(Date.now()),
-      venue: 'TD College',
-      noOfStudents: 34,
-      city: 'ballia',
-      state: 'UP',
-      postalCode: '277405',
-    },
-    {
-      id: 'abc',
-      name: 'second name',
-      date: new Date(Date.now()),
-      venue: 'SVBH Degree College',
-      noOfStudents: 29,
-      city: 'Chhapra',
-      state: 'Bihar',
-      postalCode: '288900',
-    },
-    {
-      id: 'pqr',
-      name: 'third name',
-      date: new Date(Date.now()),
-      venue: 'Little Flower School',
-      noOfStudents: 45,
-      city: 'ballia',
-      state: 'UP',
-      postalCode: '277405',
-    },
+
   ];
 
   sampleReturn: Exams = {

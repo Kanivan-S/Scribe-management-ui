@@ -9,14 +9,23 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UsersServiceService {
 
+  headers=new HttpHeaders({
+    'Content-Type':'application/json'
+  })
+
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute) {}
   getUserProfileService(id:String){
     return this.http.get<any>(`${API}/volunteer/profile/`+id);
   }
   updateProfile(form:String,id:String){
-    const  headers=new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-    return this.http.put<any>(`${API}/volunteer/profile/`+id,form,{headers:headers,observe:'response'});
+
+    return this.http.put<any>(`${API}/volunteer/profile/`+id,form,{headers:this.headers,observe:'response'});
+  }
+
+  getStudents(){
+    return this.http.get<any>(`${API}/admin/getstudents`,{headers:this.headers,observe:'response'});
+  }
+  getExamlist(){
+    return this.http.get<any>(`${API}/admin/getexams`,{headers:this.headers,observe:'response'});
   }
 }

@@ -1,23 +1,23 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">Calendar</div>
   <div class="page__content shadow p-3 position-relative">
-   <div class="container-btns">
+   <div class="container-btns" *ngIf="!isLoading">
 
-    <div class="Calendar-box">
+    <div class="Calendar-box" *ngIf="!isLoading">
       <div class="Calendar" style="min-width: 50%;">
         <mat-calendar [dateClass]="dateClass" (selectedChange)="onDateSelection($event)">
 
         </mat-calendar>
       </div>
 
-      <div>
+      <div *ngIf="!isLoading">
         <mat-card>
-          <mat-card-title>Exam Name</mat-card-title>
+          <mat-card-title>{{ detailsname }}</mat-card-title>
           <mat-card-subtitle>	Exam Date
 
             <div *ngIf="selectedDate">
               <h3>{{ selectedDate | date }}</h3>
-              <p>{{ details }}</p>
+              <p>Details Date {{ detailsdate }}</p>
             </div>
 
 
@@ -25,8 +25,23 @@
 
           <mat-card-content>
             <p>
-              Exam Description
-
+              About
+              {{detailsdesc}}
+            </p>
+            <p>
+              City:
+              <br>
+              {{dcity}}
+            </p>
+            <p>
+              State:
+              <br>
+              {{dstate}}
+            </p>
+            <p>
+              PostalCode:
+              <br>
+              {{dpostalcode}}
             </p>
 
           </mat-card-content>

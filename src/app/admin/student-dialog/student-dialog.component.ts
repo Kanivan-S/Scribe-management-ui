@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AdminService} from '../admin.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {Student} from '../students/students.component';
 
 @Component({
   selector: 'app-student-dialog',
@@ -15,17 +16,31 @@ export class StudentDialogComponent implements OnInit {
   //to show student details
   stdprofileform:FormGroup;
   isEditMode: boolean = false;
-  constructor(private router:Router,private route:ActivatedRoute,private adser:AdminService,private snackBar: MatSnackBar) {
+  stdprofile:Student;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router:Router,private route:ActivatedRoute,private adser:AdminService,private snackBar: MatSnackBar) {
+    this.stdprofile=data;
+    console.log(this.stdprofile);
+    this.stdprofileform=new FormGroup({
+      stdrollnum:new FormControl({value:this.stdprofile["rollno"],disabled: !this.isEditMode },[Validators.required]),
+      stdname:new FormControl({value:this.stdprofile["name"],disabled: !this.isEditMode },[Validators.required]),
+      stdemail:new FormControl({value:this.stdprofile["parentemail"],disabled: !this.isEditMode}, [Validators.required, Validators.email]),
+      stdcontact:new FormControl({value:this.stdprofile["phone"],disabled: !this.isEditMode},[Validators.required]),
+      stdaddress:new FormControl({value:this.stdprofile["address"],disabled: !this.isEditMode},[Validators.required]),
+      stdfathername:new FormControl({value:this.stdprofile["fathername"],disabled: !this.isEditMode},[Validators.required]),
+      stdmothername:new FormControl({value:this.stdprofile["mothername"],disabled: !this.isEditMode},[Validators.required]),
+
+    })
   }
+
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
     const nameControl = this.stdprofileform.get('stdname');
     const emailControl=this.stdprofileform.get('stdemail');
     const stdcontact=this.stdprofileform.get('stdcontact');
-
     const stdfathername=this.stdprofileform.get('stdfathername');
     const stdmothername=this.stdprofileform.get('stdfathername');
     const stdrollnum=this.stdprofileform.get('stdrollnum');
+    const stdaddressControl=this.stdprofileform.get('stdaddress');
 
     if (this.isEditMode) {
       stdrollnum.enable();
@@ -34,6 +49,7 @@ export class StudentDialogComponent implements OnInit {
       stdcontact.enable();
       stdfathername.enable();
       stdmothername.enable();
+      stdaddressControl.enable();
     } else {
       stdrollnum.disable();
       nameControl.disable();
@@ -41,32 +57,44 @@ export class StudentDialogComponent implements OnInit {
       stdcontact.disable();
       stdfathername.disable();
       stdmothername.disable();
+      stdaddressControl.disable();
     }
   }
 
-
-
-  showSnackbar() {
-    this.snackBar.open('Updated Successfully', 'Close', {
+  showSnackbar(msg:string) {
+    this.snackBar.open(msg, 'Close', {
       duration: 3000, // Duration in milliseconds
     });
     this.toggleEditMode();
   }
 
-
-
-  ngOnInit(): void {
-    this.stdprofileform=new FormGroup({
-      stdrollnum:new FormControl({value:'2020110233',disabled: !this.isEditMode },[Validators.required]),
-      stdname:new FormControl({value:'stdName',disabled: !this.isEditMode },[Validators.required]),
-      stdemail:new FormControl({value:'std@std.com',disabled: !this.isEditMode}, [Validators.required, Validators.email]),
-      stdcontact:new FormControl({value:'+10 4412 0993 234',disabled: !this.isEditMode},[Validators.required]),
-      stdaddress:new FormControl({value:'std Address Details',disabled: !this.isEditMode},[Validators.required]),
-      stdfathername:new FormControl({value:'Father name',disabled: !this.isEditMode},[Validators.required]),
-      stdmothername:new FormControl({value:'Mother name',disabled: !this.isEditMode},[Validators.required]),
-
+  updateStudentDetail(){
+    // console.log(this.stdprofileform.get("stdname").value);
+    const formJson=JSON.stringify({
+      address:this.stdprofileform.get("stdaddress").value,
+      phone:this.stdprofileform.get("stdcontact").value,
+      name:this.stdprofileform.get("stdname").value,
+      rollno:this.stdprofileform.get("stdrollnum").value,
+      fathername:this.stdprofileform.get("stdfathername").value,
+      mothername:this.stdprofileform.get("stdmothername").value,
+      parentemail:this.stdprofileform.get("stdemail").value,
     })
 
+    this.adser.updateStudent(formJson,this.stdprofile.id).subscribe(
+    (data)=>{
+      this.showSnackbar('Updated Successfully');
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
+    },
+    (err)=>{
+      this.showSnackbar("Error in Update Profile\n");
+    }
+    )
+  }
+
+  ngOnInit(): void {
   }
 
 }

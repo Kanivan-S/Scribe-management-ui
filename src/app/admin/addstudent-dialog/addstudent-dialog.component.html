@@ -28,14 +28,14 @@
       <div>
         <mat-form-field hintLabel="Max 20 characters" appearance="fill" [formGroup]="stdprofileform">
           <mat-label >Father Name</mat-label>
-          <input matInput  #input  formControlName="stdname" placeholder="Father Name" >
+          <input matInput  #input  formControlName="stdfathername" placeholder="Father Name" >
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field  appearance="fill" [formGroup]="stdprofileform">
           <mat-label >Mother Number</mat-label>
-          <input matInput  formControlName="stdfathername" placeholder="Mother Name"  >
+          <input matInput  formControlName="stdmothername" placeholder="Mother Name"  >
         </mat-form-field>
       </div>
 
@@ -76,7 +76,7 @@
 
 
     <div class="profile-form-submit-btn">
-      <button mat-raised-button color="primary"  (click)="showSnackbar()" >Add Student</button>
+      <button mat-raised-button color="primary"  (click)="addStudent()" >Add Student</button>
     </div>
 
   </div>

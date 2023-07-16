@@ -9,6 +9,9 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class AdminService {
 
+  headers=new HttpHeaders({
+    'Content-Type':'application/json'
+  })
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute) {}
 
   getAdminProfileService(emailid:String){
@@ -16,9 +19,24 @@ export class AdminService {
   }
 
   updateProfile(form:String,id:string){
-    const  headers=new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-    return this.http.put<any>(`${API}/admin/profile/`+id,form,{headers:headers,observe:'response'});
+
+    return this.http.put<any>(`${API}/admin/profile/`+id,form,{headers:this.headers,observe:'response'});
+  }
+
+  addStudents(form:String){
+
+    return this.http.post<any>(`${API}/admin/addstudent`,form,{headers:this.headers,observe:'response'});
+
+  }
+
+  updateStudent(form:String,id:string){
+
+    return this.http.put<any>(`${API}/admin/updatestudent/`+id,form,{headers:this.headers,observe:'response'});
+
+  }
+
+  addExam(form:String){
+    return this.http.post<any>(`${API}/admin/addexam`,form,{headers:this.headers,observe:'response'});
+
   }
 }
