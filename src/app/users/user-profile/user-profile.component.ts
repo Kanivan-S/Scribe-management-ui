@@ -65,12 +65,11 @@ export class UserProfileComponent implements OnInit {
 
     this.adser.updateProfile(formJson,localStorage.getItem('email')).subscribe(
     (data)=>{
-      alert("user registered!");
       this.showSnackbar('Updated Successfully');
 
     },
     (err)=>{
-      alert("Error in Update Profile\n");
+      this.showSnackbar('Error in Update Profile');
     }
     )
 

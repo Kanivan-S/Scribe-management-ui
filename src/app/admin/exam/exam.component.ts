@@ -10,6 +10,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { StudentExamComponent } from '../student-exam/student-exam.component';
 import { AddExamdialogComponent } from '../add-examdialog/add-examdialog.component';
 import { UsersServiceService } from 'src/app/users/users-service.service';
+import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -20,7 +21,7 @@ export class ExamComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   examslist:Exam[]=[];
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:UsersServiceService) {}
+  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
 
   fectchExamlist(){
     this.adser.getExamlist().subscribe(

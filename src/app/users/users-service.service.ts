@@ -22,10 +22,5 @@ export class UsersServiceService {
     return this.http.put<any>(`${API}/volunteer/profile/`+id,form,{headers:this.headers,observe:'response'});
   }
 
-  getStudents(){
-    return this.http.get<any>(`${API}/admin/getstudents`,{headers:this.headers,observe:'response'});
-  }
-  getExamlist(){
-    return this.http.get<any>(`${API}/admin/getexams`,{headers:this.headers,observe:'response'});
-  }
+
 }

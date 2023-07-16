@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsersServiceService } from 'src/app/users/users-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Exam } from '../exam/exam.component';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class CalendarComponent implements OnInit {
   upexam:Exam;
   isLoading:boolean=true;
   hashMap = new Map<number, Exam>();
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:UsersServiceService) {}
+  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
 
   hoveredDate: Date | null = null;
   selectedDate: Date | null = null;

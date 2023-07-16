@@ -11,6 +11,7 @@ import { StudentExamComponent } from '../student-exam/student-exam.component';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { AddstudentDialogComponent } from '../addstudent-dialog/addstudent-dialog.component';
 import { UsersServiceService } from 'src/app/users/users-service.service';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-students',
@@ -24,7 +25,7 @@ export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['S-No',  'Roll Number', 'Student-Name' ];
   data: Student[] = [];
 
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:UsersServiceService) {}
+  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
 
   ngOnInit(): void {
     this.fetchstudents();

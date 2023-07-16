@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { UsersServiceService } from 'src/app/users/users-service.service';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-student-exam',
@@ -7,8 +10,32 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./student-exam.component.scss'],
 })
 export class StudentExamComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
 
+  isLoading:boolean=false;
+  fetchstudents(){
+
+    this.adser.getStudents().subscribe((data)=>{
+      console.log(this.data);
+      this.filteredEligibleStudents=data.body.map((c)=>{
+        return{
+          name:c.name,
+          rollno:c.rollno,
+          id:c.id
+        }
+      })
+      this.eligibleStudents==data.body.map((c)=>{
+        return{
+          name:c.name,
+          rollno:c.rollno,
+          id:c.id
+        }
+      })
+      // this.filteredEligibleStudents = this.eligibleStudents;
+      console.log(this.filteredEligibleStudents);
+    }
+    )
+  }
   //totals
   registeredStudents: Student[];
   eligibleStudents: Student[];
@@ -26,36 +53,9 @@ export class StudentExamComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data); //examId
     //fetch list of registered students & eligibleStudents in the exam here..
-    this.registeredStudents = [
-      {
-        name: 'Ashish Verma',
-        rollNo: '20204041',
-        class: 'Nursery',
-        section: 'A',
-      },
-    ];
-    this.eligibleStudents = [
-      {
-        name: 'Kanivan',
-        rollNo: '20208069',
-        class: 'UKG',
-        section: 'B',
-      },
-      {
-        name: 'Navaneeth',
-        rollNo: '20204113',
-        class: 'LKG',
-        section: 'B',
-      },
-      {
-        name: 'AAkash',
-        rollNo: '20204154',
-        class: '1st',
-        section: 'A',
-      },
-    ];
-    this.filteredEligibleStudents = this.eligibleStudents;
-    this.filteredSelectedStudents = this.registeredStudents;
+    this.fetchstudents();
+    this.filteredSelectedStudents= [];
+
   }
 
   searchInEligible() {
@@ -138,6 +138,5 @@ export class StudentExamComponent implements OnInit {
 export interface Student {
   name: string;
   rollNo: string;
-  class: string;
-  section: string;
+  id:string;
 }
