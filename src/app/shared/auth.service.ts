@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   isLoggedin(){
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('isUser');
   }
 
   constructor() { }

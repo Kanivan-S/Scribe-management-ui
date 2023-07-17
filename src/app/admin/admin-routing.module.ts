@@ -17,12 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'adminpage',
-      },
-      {
-        path: 'adminpage',
-        component: DashboardComponent,
-        data: { title: 'Scribe Management' },
+        redirectTo: 'students',
       },
       {
         path: 'profile',

@@ -1,0 +1,322 @@
+.ngo-landing-page {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: rgba(132, 210, 210, 0.274);
+}
+
+
+.nav {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgb(29, 100, 198) 0%, rgb(41, 138, 171) 35%, rgb(49, 178, 201) 100%);
+  /* padding: 20px; */
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  font-size: large;
+
+}
+
+
+
+.logoo{
+
+  width: 100px; /* Adjust the size as needed */
+  height: auto;
+
+}
+
+.logo img {
+  height: 50px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+
+
+}
+
+ul li {
+  margin-right: 20px;
+  margin-top: 15px;
+
+}
+
+ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  background-image: url('https://www.commonground.work/wp-content/uploads/2022/09/Environmental-NGO.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.hero-content {
+  margin-bottom: 30px;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c6002e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.content-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 30px;
+}
+
+.content {
+  flex: 1;
+  text-align: left;
+  padding-left: 1em;
+
+}
+
+p
+{
+  line-height: 1.6;
+}
+.content h2 {
+  font-size: 24px;
+  /* margin-bottom: 20px; */
+}
+
+
+.read-more-link {
+  color: #c6002e;
+  text-decoration: none;
+}
+
+.image-container {
+  /* flex: 1; */
+  margin-left: 30px;
+}
+
+.image-container img {
+  max-width: 100%;
+  padding-top: 50px;
+  width: 500px;
+  height: 300px;
+}
+
+
+
+.navbar {
+  background-color: #000;
+  color: #fff;
+}
+
+.navbar-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+}
+
+.navbar-logo img{
+  height: 4em;
+  width: 12em;
+  }
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between
+  ;
+}
+
+.navbar-item {
+  margin: 0 15px;
+}
+
+.navbar-item a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-item a:hover {
+  color: pink;
+}
+
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 0 30%;
+  margin-bottom: 20px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+  display:
+   block;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  display: block;
+  text-align: center; /* Add this line to center align the headings */
+
+}
+
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Add this line for smooth transition */
+  display:block
+}
+
+.footer-section ul li a:hover {
+  color: pink; /* Change the color to your desired hover color */
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+
+
+
+
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-container {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.slider-track {
+  display: flex;
+  width: 400%; /* Adjust the number '4' based on the number of images */
+}
+
+.slider-item {
+  flex: 0 0 100%; /* Adjust the width based on the number of images */
+  padding: 10px;
+  transition: transform 0.5s ease;
+}
+
+.slider-item img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+/* Animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(calc(-100%)); /* Adjust the number '1' based on the number of images */
+  }
+  60% {
+    transform: translateX(calc(-100% * 2)); /* Adjust the number '1' based on the number of images */
+  }
+
+  100% {
+    transform: translateX(calc(-100% * 3)); /* Adjust the number '1' based on the number of images */
+  }
+
+}
+
+.slider-container {
+  animation: slide 12s infinite;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in-animation 1s ease-in forwards;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hover-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.1);
+}
+
+
+
+.welcome-page {
+  animation: fadeOut 5s forwards;
+}
+
+
+.animation-container img {
+  max-width: 300px;
+}
+
+.animation-container h1 {
+  font-size: 24px;
+  margin-top: 20px;
+}

@@ -34,6 +34,7 @@ export class AppService {
   }
   logout(){
     localStorage.clear();
+    this.router.navigate(['/']);
     //  const turl=((this.router.url).toString()).split("/");
     //  if(turl[1]=="admin"){
     //   this.router.navigateByUrl('/alogin');

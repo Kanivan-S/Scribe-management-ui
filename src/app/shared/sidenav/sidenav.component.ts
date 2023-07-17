@@ -11,10 +11,10 @@ export class SidenavComponent implements OnInit {
   constructor() { }
 
   get isAdmin(): boolean {
-    return true;
+   return (localStorage.getItem("isUser")=="false");
   }
   get isUser(): boolean {
-    return true;
+    return (localStorage.getItem("isUser")=="true")
   }
 
   ngOnInit(): void {

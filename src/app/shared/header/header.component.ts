@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
       this.myname=localStorage.getItem("userName");
     }
     else{
-      this.myname="Username";
+      this.myname="Profile";
     }
   }
 

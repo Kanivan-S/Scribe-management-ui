@@ -18,6 +18,7 @@ import { ContactParentsComponent } from './contact-parents/contact-parents.compo
 import { PhoneDialogComponent } from './phone-dialog/phone-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
   imports: [
     RouterModule,
+    MatSnackBarModule,
     FormsModule,
     MatMenuModule,
     CommonModule,

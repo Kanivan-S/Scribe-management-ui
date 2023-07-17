@@ -20,16 +20,20 @@ import { SharedModule } from './shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { VolunteerCheckinComponent } from './users/volunteer-checkin/volunteer-checkin.component';
+import { NgoLandingPageComponent } from './ngo-landing-page/ngo-landing-page.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegisterComponent,
     VolunteerCheckinComponent,
+    NgoLandingPageComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
   imports: [
+    MatSnackBarModule,
     MatTableModule,
     BrowserModule,
     MatTabsModule,

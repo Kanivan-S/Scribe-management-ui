@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../app.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -19,11 +20,13 @@ export class LoginRegisterComponent implements OnInit {
 
 
 
+
+
   public showPassword: boolean = false;
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-  constructor(private router:Router,private route:ActivatedRoute,private aps:AppService) {
+  constructor(private router:Router,private route:ActivatedRoute,private aps:AppService,private snackBar: MatSnackBar) {
     this.loginForm=new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
@@ -37,6 +40,12 @@ export class LoginRegisterComponent implements OnInit {
 
    get isAdmin(): boolean {
     return Array.from(this.route.snapshot.url)[0].path.toString() === 'alogin';
+  }
+
+  showSnackbar(msg: string) {
+    this.snackBar.open(msg, 'Close', {
+      duration: 3000, // Duration in milliseconds
+    });
   }
 
   ngOnInit(): void {
@@ -56,6 +65,7 @@ export class LoginRegisterComponent implements OnInit {
             localStorage.clear();
             localStorage.setItem("email",data.body.email);
             localStorage.setItem("id",data.body.id);
+            localStorage.setItem("isUser","false");
             this.router.navigate(['admin']);
           }
           else{
@@ -79,6 +89,7 @@ export class LoginRegisterComponent implements OnInit {
           localStorage.clear();
           localStorage.setItem("email",data.body.email);
           localStorage.setItem("id",data.body.id);
+          localStorage.setItem("isUser","true");
             this.router.navigate(['user']);
         },
         (err)=>{
@@ -101,7 +112,7 @@ export class LoginRegisterComponent implements OnInit {
     (data)=>{
       alert("user registered!");
       localStorage.setItem("email",data.body.email);
-
+      localStorage.setItem("isUser","true");
            localStorage.setItem("id",data.body.id);
            this.router.navigate(['user']);
     },
