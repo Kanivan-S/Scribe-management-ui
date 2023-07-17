@@ -1,19 +1,25 @@
 .ngo-landing-page {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 50px;
+    background-color: rgba(172, 255, 47, 0.274);
   }
   
-  header {
-    margin-bottom: 30px;
-  }
   
   nav {
-    background-color: #000;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9, 151, 28) 35%, rgb(0, 255, 17) 100%);
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .logo {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+    color: white;
+    width: 200px;
   }
   
   .logo img {
@@ -68,9 +74,10 @@
   
   .content-section {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 50px;
+    justify-content: space-around;
+    margin: 30px;
   }
   
   .content {
@@ -80,11 +87,11 @@
   
   .content h2 {
     font-size: 24px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .content p {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .read-more-link {
@@ -100,6 +107,8 @@
   .image-container img {
     max-width: 100%;
     padding-top: 50px;
+    width: 500px;
+    height: 300px;
   }
   
   footer {
