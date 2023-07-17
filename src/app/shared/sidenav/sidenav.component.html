@@ -6,13 +6,17 @@
   <h2 matSubheader class="mt-2">Navigation</h2>
 
   <div>
-   
-    <a  *ngIf="isAdmin" mat-list-item routerLinkActive="list-item-active" routerLink="students">
+    <a
+      *ngIf="isAdmin"
+      mat-list-item
+      routerLinkActive="list-item-active"
+      routerLink="students"
+    >
       <mat-icon>supervised_user_circle</mat-icon>Students
     </a>
-      <a mat-list-item routerLinkActive="list-item-active" routerLink="calendar">
-        <mat-icon>calendar_today</mat-icon> Calendar
-      </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="calendar">
+      <mat-icon>calendar_today</mat-icon> Calendar
+    </a>
     <a
       *ngIf="isAdmin"
       mat-list-item
@@ -21,7 +25,12 @@
     >
       <mat-icon>E</mat-icon> Exams
     </a>
-    <a  mat-list-item routerLinkActive="list-item-active" routerLink="profile">
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="contact">
+      <mat-icon>phone</mat-icon> Contact Parents
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="profile">
       <mat-icon>account_circle </mat-icon> Profile Page
     </a>
   </div>

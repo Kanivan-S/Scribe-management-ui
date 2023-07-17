@@ -7,6 +7,7 @@ import { UsersComponent } from './users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { VolunteerCheckinComponent } from './volunteer-checkin/volunteer-checkin.component';
+import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +30,11 @@ const routes: Routes = [
       {
         path: 'calendar',
         component: CalendarComponent,
+      },
+      {
+        path: 'contact',
+        component: ContactParentsComponent,
+        data: { title: 'Scribe Management' },
       },
       {
         path: '**',
