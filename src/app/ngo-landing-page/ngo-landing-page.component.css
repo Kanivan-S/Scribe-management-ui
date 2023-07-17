@@ -33,10 +33,14 @@
   ul {
     list-style: none;
     display: flex;
+   
+  
   }
   
   ul li {
     margin-right: 20px;
+    margin-top: 15px;
+   
   }
   
   ul li a {
@@ -177,11 +181,13 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    flex-direction: column;
   }
   
   .footer-section ul li {
     margin-bottom: 5px;
-    display: block;
+    display:
+     block;
   }
   
   .footer-section h3 {
@@ -190,14 +196,8 @@
     text-align: center; /* Add this line to center align the headings */
    
   }
-  .link{
-margin-right: 250px;
-
-  }
-  .topic{
-    margin-right: 150px;
-    
-      }
+ 
+  
   .footer-section ul li a {
     color: #fff;
     text-decoration: none;
@@ -258,25 +258,17 @@ margin-right: 250px;
       transform: translateX(0);
     }
    
-    15% {
+    30% {
       transform: translateX(calc(-100%)); /* Adjust the number '1' based on the number of images */
     }
-    30% {
+    60% {
       transform: translateX(calc(-100% * 2)); /* Adjust the number '1' based on the number of images */
     }
    
-    50% {
+    100% {
       transform: translateX(calc(-100% * 3)); /* Adjust the number '1' based on the number of images */
     }
-    65% {
-      transform: translateX(calc(-100% * 2)); /* Adjust the number '1' based on the number of images */
-    }
-    80% {
-      transform: translateX(calc(-100% * 1)); /* Adjust the number '1' based on the number of images */
-    }
-    100% {
-      transform: translateX(0);
-    }
+    
   }
   
   .slider-container {
