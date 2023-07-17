@@ -1,5 +1,5 @@
 <h2 class="title" mat-dialog-title>Add/Remove students for exam</h2>
-<mat-dialog-content  *ngIf="!isLoading">
+<mat-dialog-content *ngIf="!isLoading">
   <hr />
   <div class="mainContainer">
     <div class="subContainer">
@@ -14,18 +14,18 @@
       </mat-form-field>
       <div class="listOfStudents">
         <span
-          [ngClass]="{ choosenE: toBeSelected.includes(student.rollNo) }"
-          (click)="handleClickEligible(student.rollNo)"
+          [ngClass]="{ choosenE: toBeSelected.includes(student.rollno) }"
+          (click)="handleClickEligible(student.rollno)"
           *ngFor="let student of filteredEligibleStudents"
           class="student"
         >
-          {{ student.name }} {{ student.rollNo }}
+          {{ student.name }} {{ student.rollno }}
         </span>
       </div>
     </div>
 
     <div class="actions">
-      <button (click)="selectStudents()" mat-raised-button color="basic">
+      <button (click)="chooseStudents()" mat-raised-button color="basic">
         {{ ">" + (!!toBeSelected.length ? toBeSelected.length : "") }}
       </button>
       <button (click)="removeStudents()" mat-raised-button color="basic">
@@ -44,12 +44,12 @@
       </mat-form-field>
       <div class="listOfStudents">
         <span
-          [ngClass]="{ choosenS: toBeRemoved.includes(student.rollNo) }"
-          (click)="handleClickSelected(student.rollNo)"
+          [ngClass]="{ choosenS: toBeRemoved.includes(student.rollno) }"
+          (click)="handleClickSelected(student.rollno)"
           *ngFor="let student of filteredSelectedStudents"
           class="student"
         >
-          {{ student.name }} {{ student.rollNo }}
+          {{ student.name }} {{ student.rollno }}
         </span>
       </div>
     </div>

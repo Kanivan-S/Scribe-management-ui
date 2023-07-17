@@ -3,11 +3,26 @@
   <div class="form">
     <mat-form-field class="full-width" [formGroup]="examform">
       <mat-label>Exam Name</mat-label>
-      <input matInput placeholder="Exam Name" formControlName="name" required=""/>
+      <input
+        matInput
+        placeholder="Exam Name"
+        formControlName="name"
+        required=""
+      />
     </mat-form-field>
 
     <mat-form-field class="full-width" [formGroup]="examform">
       <mat-label>Venue</mat-label>
+      <textarea
+        formControlName="address"
+        matInput
+        placeholder="Venue of Exam"
+        required=""
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" [formGroup]="examform">
+      <mat-label>Description</mat-label>
       <textarea
         formControlName="desc"
         matInput
@@ -78,6 +93,6 @@
     [mat-dialog-close]="true"
     cdkFocusInitial
   >
-   Add
+    Add
   </button>
 </mat-dialog-actions>

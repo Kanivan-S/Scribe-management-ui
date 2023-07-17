@@ -6,39 +6,39 @@ import { LoginRegisterComponent } from '../login-register/login-register.compone
 import { UsersComponent } from './users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CalendarComponent } from './calendar/calendar.component';
-const routes:Routes=[
+import { VolunteerCheckinComponent } from './volunteer-checkin/volunteer-checkin.component';
+const routes: Routes = [
   {
-    path:'',
-    component:UsersComponent,
-    data:{title:'Scribe Managment'},
+    path: '',
+    component: UsersComponent,
+    data: { title: 'Scribe Managment' },
 
-    children:[
+    children: [
       {
-        path:'userpage',
-        component:DashboardComponent
+        path: 'volunteer/checkin',
+        component: VolunteerCheckinComponent,
       },
       {
-        path:'profile',
-        component:UserProfileComponent,
+        path: 'userpage',
+        component: DashboardComponent,
       },
       {
-        path:"calendar",
-        component:CalendarComponent
+        path: 'profile',
+        component: UserProfileComponent,
       },
       {
-        path:"**",
-        redirectTo:'userpage',
-      }
-    ]
+        path: 'calendar',
+        component: CalendarComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'userpage',
+      },
+    ],
   },
-
-]
+];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UsersRoutingModule { }
-
-
-
-
+export class UsersRoutingModule {}

@@ -3,26 +3,40 @@
   <div class="form">
     <mat-form-field class="full-width" [formGroup]="examform">
       <mat-label>Exam Name</mat-label>
-      <input matInput placeholder="Exam Name" formControlName="name"  readonly required=""/>
+      <input
+        matInput
+        placeholder="Exam Name"
+        formControlName="name"
+        readonly
+        required=""
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" [formGroup]="examform">
+      <mat-label>Description</mat-label>
+      <textarea
+        formControlName="desc"
+        matInput
+        placeholder="Description of Exam"
+        readonly
+        required=""
+      ></textarea>
     </mat-form-field>
 
     <mat-form-field class="full-width" [formGroup]="examform">
       <mat-label>Venue</mat-label>
       <textarea
-        formControlName="desc"
+        formControlName="address"
         matInput
-        placeholder="Description of Exam"
-        readonly required=""
+        placeholder="Venue of Exam"
+        readonly
+        required=""
       ></textarea>
     </mat-form-field>
 
     <mat-form-field [formGroup]="examform">
       <mat-label>Date</mat-label>
-      <input
-        formControlName="date"
-        matInput
-        readonly required=""
-      />
+      <input formControlName="date" matInput readonly required="" />
     </mat-form-field>
     <!-- <span *ngIf="originalDate">Original Date: {{ originalDate }}</span> -->
 
@@ -35,7 +49,8 @@
               formControlName="city"
               matInput
               placeholder="Chennai"
-              readonly required=""
+              readonly
+              required=""
             />
           </mat-form-field>
         </td>
@@ -46,7 +61,8 @@
               formControlName="state"
               matInput
               placeholder="TamilNadu"
-              readonly required=""
+              readonly
+              required=""
             />
           </mat-form-field>
         </td>
@@ -58,7 +74,8 @@
               matInput
               maxlength="6"
               placeholder="211004"
-              readonly required=""
+              readonly
+              required=""
             />
             <!-- <mat-hint align="end">{{ examDetails.zip.length }} / 6</mat-hint> -->
           </mat-form-field>
@@ -70,5 +87,4 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-
 </mat-dialog-actions>

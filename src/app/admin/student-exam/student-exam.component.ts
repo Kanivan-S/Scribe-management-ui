@@ -3,59 +3,70 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UsersServiceService } from 'src/app/users/users-service.service';
 import { AdminService } from '../admin.service';
-
+import { API } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-student-exam',
   templateUrl: './student-exam.component.html',
   styleUrls: ['./student-exam.component.scss'],
 })
 export class StudentExamComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _httpClient: HttpClient,
+    public dialog: MatDialog,
+    private adser: AdminService,
+    private snackBar: MatSnackBar
+  ) {}
 
-  isLoading:boolean=false;
-  fetchstudents(){
+  isLoading: boolean = false;
+  fetchstudents() {
+    this.adser.getUnregisterdStudents(this.data).subscribe((response) => {
+      console.log(response);
+      this.filteredEligibleStudents = response.body.map((c) => ({
+        name: c.name,
+        rollno: c.rollno,
+        id: c.id,
+      }));
+      this.eligibleStudents = response.body.map((c) => ({
+        name: c.name,
+        rollno: c.rollno,
+        id: c.id,
+      }));
 
-    this.adser.getStudents().subscribe((data)=>{
-      console.log(this.data);
-      this.filteredEligibleStudents=data.body.map((c)=>{
-        return{
-          name:c.name,
-          rollno:c.rollno,
-          id:c.id
-        }
-      })
-      this.eligibleStudents==data.body.map((c)=>{
-        return{
-          name:c.name,
-          rollno:c.rollno,
-          id:c.id
-        }
-      })
-      // this.filteredEligibleStudents = this.eligibleStudents;
-      console.log(this.filteredEligibleStudents);
-    }
-    )
+      this.adser.getRegisterdStudents(this.data).subscribe((response) => {
+        console.log(response);
+        this.registeredStudents = response.body.map((c) => ({
+          name: c.name,
+          rollno: c.rollno,
+          id: c.id,
+        }));
+        this.filteredSelectedStudents = response.body.map((c) => ({
+          name: c.name,
+          rollno: c.rollno,
+          id: c.id,
+        }));
+      });
+    });
   }
   //totals
-  registeredStudents: Student[];
-  eligibleStudents: Student[];
+  registeredStudents: Student[] = [];
+  eligibleStudents: Student[] = [];
 
   //for filtering
   filterEligible = '';
-  filteredEligibleStudents: Student[];
+  filteredEligibleStudents: Student[] = [];
   filterSelected = '';
-  filteredSelectedStudents: Student[];
+  filteredSelectedStudents: Student[] = [];
 
   //highlighting
-  toBeSelected: string[] = []; //array or rollno
-  toBeRemoved: string[] = []; //array or rollno
+  toBeSelected: string[] = []; //array of rollno
+  toBeRemoved: string[] = []; //array of rollno
 
   ngOnInit(): void {
     console.log(this.data); //examId
     //fetch list of registered students & eligibleStudents in the exam here..
     this.fetchstudents();
-    this.filteredSelectedStudents= [];
-
   }
 
   searchInEligible() {
@@ -64,7 +75,7 @@ export class StudentExamComponent implements OnInit {
         student.name
           .toLowerCase()
           .startsWith(this.filterEligible.toLowerCase()) ||
-        student.rollNo
+        student.rollno
           .toLowerCase()
           .startsWith(this.filterEligible.toLowerCase())
     );
@@ -76,13 +87,14 @@ export class StudentExamComponent implements OnInit {
         student.name
           .toLowerCase()
           .startsWith(this.filterSelected.toLowerCase()) ||
-        student.rollNo
+        student.rollno
           .toLowerCase()
           .startsWith(this.filterSelected.toLowerCase())
     );
   }
 
   handleClickEligible(student) {
+    console.log(student);
     if (this.toBeSelected.includes(student))
       this.toBeSelected = this.toBeSelected.filter((x) => x != student);
     else this.toBeSelected = [...this.toBeSelected, student];
@@ -94,17 +106,18 @@ export class StudentExamComponent implements OnInit {
     else this.toBeRemoved = [...this.toBeRemoved, student];
   }
 
-  selectStudents() {
+  chooseStudents() {
     //transfer toBeSelected from eligible to registered
     let temp: Student[] = [];
     this.eligibleStudents = this.eligibleStudents.filter((student) => {
-      if (this.toBeSelected.includes(student.rollNo)) {
+      if (this.toBeSelected.includes(student.rollno)) {
         temp.push(student);
         return false;
       }
       return true;
     });
     this.registeredStudents = [...this.registeredStudents, ...temp];
+    console.log(this.eligibleStudents, this.registeredStudents);
     this.toBeSelected = [];
     this.filterEligible = '';
     this.filterSelected = '';
@@ -115,7 +128,7 @@ export class StudentExamComponent implements OnInit {
     //transfer toBeRemoved from registered to eligible
     let temp: Student[] = [];
     this.registeredStudents = this.registeredStudents.filter((student) => {
-      if (this.toBeRemoved.includes(student.rollNo)) {
+      if (this.toBeRemoved.includes(student.rollno)) {
         temp.push(student);
         return false;
       }
@@ -131,12 +144,43 @@ export class StudentExamComponent implements OnInit {
 
   update() {
     console.log(this.registeredStudents);
-    //api call here..
+    const ids = this.registeredStudents.map((student) => student.id);
+    const url = `${API}/registration/examstudents/${this.data}`;
+    this._httpClient
+      .post(url, { arr: ids }, { responseType: 'text' })
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.showSnackbar('Updated Successfully');
+          this._httpClient
+            .get(`${API}/registration/invite/${this.data}`, {
+              responseType: 'text',
+            })
+            .subscribe(
+              (res) => {
+                console.log(res);
+              },
+              (err) => {
+                console.log('error in email sending: ', err);
+              }
+            );
+        },
+        (error) => {
+          console.log('error: ', error);
+          this.showSnackbar('Some error occured');
+        }
+      );
+  }
+
+  showSnackbar(msg: string) {
+    this.snackBar.open(msg, 'Close', {
+      duration: 3000, // Duration in milliseconds
+    });
   }
 }
 
 export interface Student {
   name: string;
-  rollNo: string;
-  id:string;
+  rollno: string;
+  id: string;
 }

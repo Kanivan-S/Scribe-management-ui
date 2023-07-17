@@ -1,0 +1,14 @@
+<div class="mainContainer">
+  <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+  <h2 *ngIf="!loading">
+    Request for {{ exam?.name }} on {{ exam?.date }} at {{ exam?.address }},
+    {{ exam?.city }}, {{ exam?.state }} {{ exam?.code }}
+  </h2>
+  <p><b>Description: </b> {{ exam?.desc }}</p>
+  <div class="actions">
+    <button (click)="accept()" mat-raised-button color="primary">Accept</button>
+    <a [routerLink]="'/'"
+      ><button mat-raised-button color="accent">Reject</button></a
+    >
+  </div>
+</div>

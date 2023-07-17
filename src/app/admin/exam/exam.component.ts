@@ -12,6 +12,8 @@ import { AddExamdialogComponent } from '../add-examdialog/add-examdialog.compone
 import { UsersServiceService } from 'src/app/users/users-service.service';
 import { AdminService } from '../admin.service';
 import { VolunteerExamComponent } from '../volunteer-exam/volunteer-exam.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -21,15 +23,24 @@ export class ExamComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  examslist:Exam[]=[];
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
+  examslist: Exam[] = [];
+  constructor(
+    private _httpClient: HttpClient,
+    public dialog: MatDialog,
+    private adser: AdminService,
+    private snackBar: MatSnackBar
+  ) {}
 
-  fectchExamlist(){
+  fectchExamlist() {
     this.adser.getExamlist().subscribe(
-      (data)=>{
-        this.data=data.body;
+      (data) => {
+        this.data = data.body;
+      },
+      (err) => {
+        console.log('error in fetching exam list: ', err);
+        this.showSnackbar('Error in fetching exam list!');
       }
-    )
+    );
   }
 
   ngOnInit(): void {
@@ -62,7 +73,7 @@ export class ExamComponent implements OnInit {
     });
   }
 
-  displayedColumns: string[] = ['exam-date', 'exam-name', 'desc','city'];
+  displayedColumns: string[] = ['exam-date', 'exam-name', 'desc', 'city'];
   database: ExamDataSource | null;
   data: Exams[] = [];
 
@@ -99,6 +110,11 @@ export class ExamComponent implements OnInit {
       )
       .subscribe((data) => (this.data = data));
   }
+  showSnackbar(msg: any) {
+    this.snackBar.open(msg, 'Close', {
+      duration: 3000, // Duration in milliseconds
+    });
+  }
 }
 
 export interface Exams {
@@ -107,10 +123,11 @@ export interface Exams {
 }
 
 export interface Exam {
-  sno:number;
+  sno: number;
   id: string;
   name: string;
   desc: string;
+  address: string;
   date: Date;
   city: string;
   state: string;
@@ -120,9 +137,7 @@ export interface Exam {
 export class ExamDataSource {
   constructor(private _httpClient: HttpClient) {}
 
-  exams: Exam[] = [
-
-  ];
+  exams: Exam[] = [];
 
   sampleReturn: Exams = {
     items: this.exams,
