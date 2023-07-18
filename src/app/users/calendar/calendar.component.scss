@@ -35,7 +35,10 @@
 
 }
 
-
+.cardContainer{
+  max-height: 500px;
+  overflow: auto;
+}
 .card {
   position: absolute;
   top: 50%;

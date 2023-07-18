@@ -22,7 +22,8 @@ export class EmailDialogComponent implements OnInit {
   displayedColumns: string[] = ['student', 'email', 'action'];
   ngOnInit(): void {
     let user = 'admin';
-    if (localStorage.getItem('userType') !== 'admin') {
+    // console.log(typeof localStorage.getItem('isUser'));
+    if (localStorage.getItem('isUser') === 'true') {
       user = localStorage.getItem('id');
     }
     const url = `${API}/students/getstudents`;
@@ -62,8 +63,8 @@ export class EmailDialogComponent implements OnInit {
   }
 
   send() {
-    let type = localStorage.getItem('userType');
-    if (!type) type = 'volunteer';
+    let type =
+      localStorage.getItem('isUser') === 'false' ? 'admin' : 'volunteer';
     const url = `${API}/exams/sendemailtoparent`;
     const options: Object = {
       headers: {

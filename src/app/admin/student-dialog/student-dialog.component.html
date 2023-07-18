@@ -1,92 +1,147 @@
 <h2 class="title" mat-dialog-title>Student Details</h2>
 <mat-dialog-content>
-
   <div>
     <div class="profile-form-box">
-
-
       <div>
-        <mat-form-field hintLabel="Max 20 characters" appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Name</mat-label>
-          <input matInput  #input maxlength="20" formControlName="stdname" placeholder="name" style="color: black;" required>
-          <mat-hint align="end">{{input.value.length}}/20</mat-hint>
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-form-field  appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Parent Contact Number</mat-label>
-          <input matInput maxlength="20" formControlName="stdcontact" placeholder="contactno"  style="color: black;">
-        </mat-form-field>
-      </div>
-
-    </div>
-
-    <div class="profile-form-box">
-
-
-      <div>
-        <mat-form-field hintLabel="Max 20 characters" appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Father Name</mat-label>
-          <input matInput  #input maxlength="20" formControlName="stdname" placeholder="Father Name" style="color: black;">
-          <mat-hint align="end">{{input.value.length}}/20</mat-hint>
+        <mat-form-field
+          hintLabel="Max 50 characters"
+          appearance="fill"
+          [formGroup]="stdprofileform"
+        >
+          <mat-label style="color: #3f51b5">Name</mat-label>
+          <input
+            matInput
+            #input
+            maxlength="50"
+            formControlName="stdname"
+            placeholder="name"
+            style="color: black"
+            required
+          />
+          <mat-hint align="end">{{ input.value.length }}/50</mat-hint>
         </mat-form-field>
       </div>
 
       <div>
-        <mat-form-field  appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Mother Number</mat-label>
-          <input matInput maxlength="20" formControlName="stdfathername" placeholder="Mother Name"  style="color: black;">
-        </mat-form-field>
-      </div>
-
-    </div>
-
-    <div class="profile-form-box">
-      <div >
-        <mat-form-field  appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Parent Email Id</mat-label>
-          <input matInput #input maxlength="20" formControlName="stdemail" placeholder="emailid" required style="color: black;">
-        </mat-form-field>
-      </div>
-
-      <div >
         <mat-form-field appearance="fill" [formGroup]="stdprofileform">
-          <mat-label style="color: #3F51B5;">Rollnumber</mat-label>
-            <input matInput #input  formControlName="stdrollnum" placeholder="Rollnumber" required style="color: black;">
-
-          </mat-form-field>
+          <mat-label style="color: #3f51b5">Parent Contact Number</mat-label>
+          <input
+            matInput
+            maxlength="50"
+            formControlName="stdcontact"
+            placeholder="contactno"
+            style="color: black"
+          />
+        </mat-form-field>
       </div>
-
     </div>
 
-
-
-
-
-      <div class="profile-form-box">
-        <div>
-          <mat-form-field appearance="fill" [formGroup]="stdprofileform" style="width: 70%;">
-            <mat-label style="color: #3F51B5;">Address</mat-label>
-            <textarea matInput formControlName="stdaddress" required  style="color: black;"></textarea>
-          </mat-form-field>
-        </div>
-
+    <div class="profile-form-box">
+      <div>
+        <mat-form-field
+          hintLabel="Max 50 characters"
+          appearance="fill"
+          [formGroup]="stdprofileform"
+        >
+          <mat-label style="color: #3f51b5">Father Name</mat-label>
+          <input
+            matInput
+            #input
+            maxlength="50"
+            formControlName="stdfathername"
+            placeholder="Father Name"
+            style="color: black"
+          />
+          <mat-hint align="end">{{ input.value.length }}/50</mat-hint>
+        </mat-form-field>
       </div>
 
+      <div>
+        <mat-form-field appearance="fill" [formGroup]="stdprofileform">
+          <mat-label style="color: #3f51b5">Mother's Name</mat-label>
+          <input
+            matInput
+            maxlength="50"
+            formControlName="stdmothername"
+            placeholder="Mother Name"
+            style="color: black"
+          />
+        </mat-form-field>
+      </div>
+    </div>
 
+    <div class="profile-form-box">
+      <div>
+        <mat-form-field appearance="fill" [formGroup]="stdprofileform">
+          <mat-label style="color: #3f51b5">Parent Email Id</mat-label>
+          <input
+            matInput
+            #input
+            maxlength="50"
+            formControlName="stdemail"
+            placeholder="emailid"
+            required
+            style="color: black"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill" [formGroup]="stdprofileform">
+          <mat-label style="color: #3f51b5">Rollnumber</mat-label>
+          <input
+            matInput
+            #input
+            formControlName="stdrollnum"
+            placeholder="Rollnumber"
+            required
+            style="color: black"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="profile-form-box">
+      <div>
+        <mat-form-field
+          appearance="fill"
+          [formGroup]="stdprofileform"
+          style="width: 70%"
+        >
+          <mat-label style="color: #3f51b5">Address</mat-label>
+          <textarea
+            matInput
+            formControlName="stdaddress"
+            required
+            style="color: black"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
 
     <div class="profile-form-submit-btn">
-      <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="toggleEditMode()" >Edit Profile</button>
-      <button mat-raised-button color="primary" *ngIf="isEditMode" (click)="updateStudentDetail()" >Save details</button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="!isEditMode"
+        (click)="toggleEditMode()"
+      >
+        Edit Profile
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="isEditMode"
+        (click)="updateStudentDetail()"
+      >
+        Save details
+      </button>
     </div>
-
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button
-
     mat-raised-button
     color="primary"
     [mat-dialog-close]="true"

@@ -35,6 +35,7 @@ export class ExamComponent implements OnInit {
     this.adser.getExamlist().subscribe(
       (data) => {
         this.data = data.body;
+        this.resultsLength = this.data.length;
       },
       (err) => {
         console.log('error in fetching exam list: ', err);
@@ -104,7 +105,7 @@ export class ExamComponent implements OnInit {
           if (data === null) {
             return [];
           }
-          this.resultsLength = data.total_count;
+          // this.resultsLength = data.total_count;
           return data.items;
         })
       )

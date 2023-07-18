@@ -19,7 +19,7 @@ export class PhoneDialogComponent implements OnInit {
   displayedColumns: string[] = ['student', 'phone', 'action'];
   ngOnInit(): void {
     let user = 'admin';
-    if (localStorage.getItem('userType') !== 'admin') {
+    if (localStorage.getItem('isUser') === 'true') {
       user = localStorage.getItem('id');
     }
     const url = `${API}/students/getstudents`;

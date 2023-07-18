@@ -16,16 +16,20 @@ import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styleUrls: ['./students.component.scss']
+  styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['S-No',  'Roll Number', 'Student-Name' ];
+  displayedColumns: string[] = ['S-No', 'Roll Number', 'Student-Name'];
   data: Student[] = [];
 
-  constructor(private _httpClient: HttpClient, public dialog: MatDialog,private adser:AdminService) {}
+  constructor(
+    private _httpClient: HttpClient,
+    public dialog: MatDialog,
+    private adser: AdminService
+  ) {}
 
   ngOnInit(): void {
     this.fetchstudents();
@@ -43,7 +47,6 @@ export class StudentsComponent implements OnInit {
       data: { type: 'edit', ...row },
     });
   }
-
 
   database: StudentDataSource | null;
 
@@ -81,30 +84,26 @@ export class StudentsComponent implements OnInit {
       .subscribe((data) => (this.data = data));
   }
 
-  fetchstudents(){
-
-    this.adser.getStudents().subscribe((data)=>{
-      this.data=data.body.map((c,index)=>{
-        return{
-          sno:index+1,
-          name:c.name,
-          rollno:c.rollno,
-          id:c.id,
-          address:c.address,
-          fathername:c.fathername,
-          mothername:c.mothername,
-          parentemail:c.parentemail,
-          phone:c.phone
-        }
-      })
+  fetchstudents() {
+    this.adser.getStudents().subscribe((data) => {
+      this.data = data.body.map((c, index) => {
+        return {
+          sno: index + 1,
+          name: c.name,
+          rollno: c.rollno,
+          id: c.id,
+          address: c.address,
+          fathername: c.fathername,
+          mothername: c.mothername,
+          parentemail: c.parentemail,
+          phone: c.phone,
+        };
+      });
+      this.resultsLength = this.data.length;
       console.log(this.data);
-
-    }
-    )
-
+    });
   }
 }
-
 
 export interface StudentsList {
   items: Student[];
@@ -112,23 +111,21 @@ export interface StudentsList {
 }
 
 export interface Student {
-  sno:Number;
+  sno: Number;
   name: string;
   rollno: string;
-  id:string,
-  address:string,
-  fathername:string,
-  mothername:string,
-  parentemail:string,
-  phone:string
+  id: string;
+  address: string;
+  fathername: string;
+  mothername: string;
+  parentemail: string;
+  phone: string;
 }
 
 export class StudentDataSource {
   constructor(private _httpClient: HttpClient) {}
 
-  stds: Student[] = [
-
-  ];
+  stds: Student[] = [];
 
   sampleReturn: StudentsList = {
     items: this.stds,
@@ -144,4 +141,3 @@ export class StudentDataSource {
     return of(this.sampleReturn);
   }
 }
-

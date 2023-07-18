@@ -7,7 +7,7 @@ export const environment = {
 };
 
 // export const API = 'http://localhost:8080'; //Local Server
-export const API = 'http://localhost:8080';
+export const API = 'http://192.168.153.76:8080';
 export const IMG_URL = 'assets/img';
 
 //role=1 admin

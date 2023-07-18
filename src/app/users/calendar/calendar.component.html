@@ -11,8 +11,8 @@
           </mat-calendar>
         </div>
 
-        <div *ngIf="!isLoading">
-          <div *ngFor="let exam of currentView" class="cardContainer">
+        <div *ngIf="!isLoading" class="cardContainer">
+          <div *ngFor="let exam of currentView">
             <mat-card>
               <mat-card-title>{{ exam.name }}</mat-card-title>
               <mat-card-subtitle>
