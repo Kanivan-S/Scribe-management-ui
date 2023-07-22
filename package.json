@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
+    "chart.js": "^2.9.4",
+    "chartjs-plugin-zoom": "^0.7.7",
     "ngx-mat-timepicker": "^15.1.1",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.6.0",
