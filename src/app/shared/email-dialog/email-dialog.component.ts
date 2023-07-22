@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from 'src/environments/environment';
 
@@ -15,6 +15,10 @@ export class EmailDialogComponent implements OnInit {
     private http: HttpClient,
     private snackBar: MatSnackBar
   ) {}
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': localStorage.getItem('token'),
+  });
   parsedData: any[] = [];
   selectedIds = [];
   subject: string = '';
@@ -30,7 +34,9 @@ export class EmailDialogComponent implements OnInit {
     this.http
       .get<any>(url, {
         headers: {
-          user: user,
+          'Content-Type': 'application/json',
+          token:localStorage.getItem('token'),
+          user: user
         },
       })
       .subscribe(
@@ -69,6 +75,7 @@ export class EmailDialogComponent implements OnInit {
     const options: Object = {
       headers: {
         type: type,
+        token:localStorage.getItem("token"),
         id: localStorage.getItem('id'),
       },
       responseType: 'text',
@@ -76,7 +83,7 @@ export class EmailDialogComponent implements OnInit {
     this.http
       .post<any>(
         url,
-        { arr: this.selectedIds, subject: this.subject, body: this.body },
+        { token:localStorage.getItem('token'), arr: this.selectedIds, subject: this.subject, body: this.body },
         options
       )
       .subscribe(

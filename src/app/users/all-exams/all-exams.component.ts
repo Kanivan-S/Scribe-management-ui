@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
@@ -9,6 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AllExamsComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, public http: HttpClient) {}
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': localStorage.getItem('token'),
+  });
 
   sortConfig = {
     column: '',
@@ -22,7 +26,7 @@ export class AllExamsComponent implements OnInit {
   ngOnInit(): void {
     const vId = localStorage.getItem('id');
     //send only those exams which are not volunteered by this volunteer
-    // this.http.get<any>(`${API}/volunteer/upcomingExams/${vId}`).subscribe(
+    // this.http.get<any>(`${API}/volunteer/upcomingExams/${vId}`,headers:this.headers).subscribe(
     //   (response) => {
     //     console.log(response);
     //     response.forEach((item) => {

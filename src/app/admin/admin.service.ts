@@ -14,7 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AdminService {
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    token: '',
+    token: localStorage.getItem('token'),
   });
   constructor(
     private http: HttpClient,
@@ -23,7 +23,9 @@ export class AdminService {
   ) {}
 
   getAdminProfileService(emailid: String) {
-    return this.http.get<any>(`${API}/admin/profile/` + emailid);
+    return this.http.get<any>(`${API}/admin/profile/` + emailid,{
+      headers:this.headers,
+    });
   }
 
   updateProfile(form: String, id: string) {

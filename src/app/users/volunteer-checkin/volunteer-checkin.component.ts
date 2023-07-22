@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -16,6 +16,10 @@ export class VolunteerCheckinComponent implements OnInit {
     public httpClient: HttpClient,
     private snackBar: MatSnackBar
   ) {}
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': localStorage.getItem('token'),
+  });
   examId: string;
   loading: boolean = true;
   volId: string;
@@ -24,7 +28,7 @@ export class VolunteerCheckinComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.examId = params.examId;
       this.volId = params.volId;
-      this.httpClient.get(`${API}/exams/getexam/${this.examId}`).subscribe(
+      this.httpClient.get(`${API}/exams/getexam/${this.examId}`,{headers:this.headers}).subscribe(
         (response) => {
           console.log(response);
           this.exam = response;
@@ -50,6 +54,7 @@ export class VolunteerCheckinComponent implements OnInit {
   accept() {
     this.httpClient
       .get(`${API}/registration/accept/${this.volId}/${this.examId}`, {
+        headers:this.headers,
         responseType: 'text',
       })
       .subscribe(

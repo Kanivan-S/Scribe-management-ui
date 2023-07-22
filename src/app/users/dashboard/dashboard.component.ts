@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/admin/admin.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
@@ -11,13 +11,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DashboardComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, public http: HttpClient) {}
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': localStorage.getItem('token'),
+  });
 
   displayedColumns = ['exam', 'student', 'date', 'action'];
   noExams: boolean = false;
   exams: Exam[] = [];
   ngOnInit(): void {
     const vId = localStorage.getItem('id');
-    this.http.get<any>(`${API}/volunteer/volunteeredexams/${vId}`).subscribe(
+    this.http.get<any>(`${API}/volunteer/volunteeredexams/${vId}`,{headers:this.headers}).subscribe(
       (response) => {
         console.log(response);
         response.forEach((item) => {

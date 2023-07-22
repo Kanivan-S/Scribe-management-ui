@@ -10,12 +10,13 @@ import { catchError, map } from 'rxjs/operators';
 export class UsersServiceService {
 
   headers=new HttpHeaders({
-    'Content-Type':'application/json'
+    'Content-Type':'application/json',
+    'token':localStorage.getItem('token')
   })
 
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute) {}
   getUserProfileService(id:String){
-    return this.http.get<any>(`${API}/volunteer/profile/`+id);
+    return this.http.get<any>(`${API}/volunteer/profile/`+id,{headers:this.headers});
   }
   updateProfile(form:String,id:String){
 
