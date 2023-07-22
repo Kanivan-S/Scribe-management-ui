@@ -14,6 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AdminService {
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
+    token: '',
   });
   constructor(
     private http: HttpClient,

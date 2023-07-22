@@ -2,14 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ExamDialogComponent } from '../exam-dialog/exam-dialog.component';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, SortDirection } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
-import { merge, Observable, of as observableOf, of } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { StudentExamComponent } from '../student-exam/student-exam.component';
 import { AddExamdialogComponent } from '../add-examdialog/add-examdialog.component';
-import { UsersServiceService } from 'src/app/users/users-service.service';
 import { AdminService } from '../admin.service';
 import { VolunteerExamComponent } from '../volunteer-exam/volunteer-exam.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,7 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ExamComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
   examslist: Exam[] = [];
   constructor(
     private _httpClient: HttpClient,
@@ -31,11 +26,14 @@ export class ExamComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
+  isLoadingResults = true;
+
   fectchExamlist() {
     this.adser.getExamlist().subscribe(
       (data) => {
         this.data = data.body;
         this.resultsLength = this.data.length;
+        this.isLoadingResults = false;
       },
       (err) => {
         console.log('error in fetching exam list: ', err);
@@ -75,45 +73,14 @@ export class ExamComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['exam-date', 'exam-name', 'desc', 'city'];
-  database: ExamDataSource | null;
   data: Exams[] = [];
 
   resultsLength = 0;
-  isLoadingResults = true;
   errorOccured = false;
 
-  ngAfterViewInit() {
-    this.database = new ExamDataSource(this._httpClient);
-
-    // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.database!.getExams(
-            this.sort.active,
-            this.sort.direction,
-            this.paginator.pageIndex
-          ).pipe(catchError(() => observableOf(null)));
-        }),
-        map((data) => {
-          this.isLoadingResults = false;
-          this.errorOccured = data === null;
-          if (data === null) {
-            return [];
-          }
-          // this.resultsLength = data.total_count;
-          return data.items;
-        })
-      )
-      .subscribe((data) => (this.data = data));
-  }
   showSnackbar(msg: any) {
     this.snackBar.open(msg, 'Close', {
-      duration: 3000, // Duration in milliseconds
+      duration: 3000,
     });
   }
 }
@@ -133,26 +100,4 @@ export interface Exam {
   city: string;
   state: string;
   postalcode: string;
-}
-
-export class ExamDataSource {
-  constructor(private _httpClient: HttpClient) {}
-
-  exams: Exam[] = [];
-
-  sampleReturn: Exams = {
-    items: this.exams,
-    total_count: 3,
-  };
-
-  getExams(
-    sort: string,
-    order: SortDirection,
-    page: number
-  ): Observable<Exams> {
-    console.log(sort, order, page);
-    //return sorted result from backend...
-    return of(this.sampleReturn);
-    // return this._httpClient.get<Exams>(requestUrl);
-  }
 }

@@ -8,6 +8,7 @@ import { StudentExamComponent } from './student-exam/student-exam.component';
 import { StudentsComponent } from './students/students.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
+import { FaqsComponent } from './faqs/faqs.component';
 const routes: Routes = [
   {
     path: '',
@@ -42,6 +43,11 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactParentsComponent,
+        data: { title: 'Scribe Management' },
+      },
+      {
+        path: 'faq',
+        component: FaqsComponent,
         data: { title: 'Scribe Management' },
       },
     ],

@@ -45,6 +45,8 @@ import { AddstudentDialogComponent } from './addstudent-dialog/addstudent-dialog
 import { CalendarComponent } from './calendar/calendar.component';
 import { AddExamdialogComponent } from './add-examdialog/add-examdialog.component';
 import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.componen
     CalendarComponent,
     AddExamdialogComponent,
     VolunteerExamComponent,
+    FaqsComponent,
   ],
   imports: [
     MatButtonModule,
@@ -93,6 +96,7 @@ import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.componen
     MatSnackBarModule,
     MatMenuModule,
     MatAutocompleteModule,
+    MatExpansionModule,
   ],
   entryComponents: [ExamDialogComponent, StudentExamComponent],
 })
