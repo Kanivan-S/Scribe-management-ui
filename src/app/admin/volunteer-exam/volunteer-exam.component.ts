@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,6 +15,10 @@ export class VolunteerExamComponent implements OnInit {
     public httpClient: HttpClient,
     public snackBar: MatSnackBar
   ) {}
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    token: localStorage.getItem('token'),
+  });
 
   // options: string[] = [];
   // filteredOptions: string[][] = [];
@@ -30,7 +34,9 @@ export class VolunteerExamComponent implements OnInit {
   unMappedColumns: string[] = ['student']; //, 'mapTo', 'mapRandom'];
   ngOnInit(): void {
     this.httpClient
-      .get<any>(`${API}/admin/getregistrationexams/${this.data}`)
+      .get<any>(`${API}/admin/getregistrationexams/${this.data}`,{
+        headers:this.headers
+      })
       .subscribe(
         (res) => {
           res.forEach((val) => {

@@ -30,6 +30,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FaqsComponent } from './faqs/faqs.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AllExamsComponent } from './all-exams/all-exams.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DashboardComponent,
     UserProfileComponent,
     CalendarComponent,
+    FaqsComponent,
+    AllExamsComponent,
   ],
   imports: [
     CommonModule,
@@ -74,6 +79,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
   ],
 })
 export class UsersModule {}

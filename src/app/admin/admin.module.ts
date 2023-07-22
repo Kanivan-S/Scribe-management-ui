@@ -46,6 +46,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { AddExamdialogComponent } from './add-examdialog/add-examdialog.component';
 import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.component';
 import { ChartpageComponent } from './chartpage/chartpage.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { ChartpageComponent } from './chartpage/chartpage.component';
     AddExamdialogComponent,
     VolunteerExamComponent,
     ChartpageComponent,
+    FaqsComponent,
   ],
   imports: [
     MatButtonModule,
@@ -95,6 +98,7 @@ import { ChartpageComponent } from './chartpage/chartpage.component';
     MatSnackBarModule,
     MatMenuModule,
     MatAutocompleteModule,
+    MatExpansionModule,
   ],
   entryComponents: [ExamDialogComponent, StudentExamComponent],
 })

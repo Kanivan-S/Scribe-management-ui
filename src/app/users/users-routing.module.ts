@@ -8,6 +8,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { VolunteerCheckinComponent } from './volunteer-checkin/volunteer-checkin.component';
 import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { AllExamsComponent } from './all-exams/all-exams.component';
 const routes: Routes = [
   {
     path: '',
@@ -24,6 +26,10 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
+        path: 'all-exams',
+        component: AllExamsComponent,
+      },
+      {
         path: 'profile',
         component: UserProfileComponent,
       },
@@ -34,6 +40,11 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactParentsComponent,
+        data: { title: 'Scribe Management' },
+      },
+      {
+        path: 'faq',
+        component: FaqsComponent,
         data: { title: 'Scribe Management' },
       },
       {

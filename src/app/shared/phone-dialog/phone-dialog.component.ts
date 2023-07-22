@@ -27,6 +27,7 @@ export class PhoneDialogComponent implements OnInit {
       .get<any>(url, {
         headers: {
           user: user,
+          token:localStorage.getItem("token")
         },
       })
       .subscribe(

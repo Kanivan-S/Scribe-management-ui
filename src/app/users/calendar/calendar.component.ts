@@ -4,7 +4,7 @@ import {
   MatDatepickerModule,
 } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { API } from 'src/environments/environment';
 
@@ -21,7 +21,10 @@ export class CalendarComponent implements OnInit {
   isLoading: boolean = true;
   hashMap = new Map<number, Exam[]>();
   constructor(private http: HttpClient, public dialog: MatDialog) {}
-
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'token': localStorage.getItem('token'),
+  });
   hoveredDate: Date | null = null;
   selectedDate: Date | null = null;
   currentView: Exam[] = [];
@@ -37,7 +40,7 @@ export class CalendarComponent implements OnInit {
 
   fectchExamlist() {
     const vId = localStorage.getItem('id');
-    this.http.get<any>(`${API}/volunteer/volunteeredexams/${vId}`).subscribe(
+    this.http.get<any>(`${API}/volunteer/volunteeredexams/${vId}`,{headers:this.headers}).subscribe(
       (data) => {
         this.isLoading = false;
         for (let i = 0; i < data.length; i++) {

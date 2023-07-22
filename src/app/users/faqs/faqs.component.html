@@ -1,0 +1,22 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Frequently Asked Questions</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-btns">
+      <div class="mainContainer">
+        <mat-accordion>
+          <mat-expansion-panel
+            *ngFor="let question of faqData"
+            (click)="question.expanded = !question.expanded"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title class="question">
+                {{ question.question }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="answer">{{ question.answer }}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

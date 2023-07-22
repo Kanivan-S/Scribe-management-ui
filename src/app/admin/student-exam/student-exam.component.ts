@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UsersServiceService } from 'src/app/users/users-service.service';
@@ -141,19 +141,24 @@ export class StudentExamComponent implements OnInit {
     this.searchInEligible();
     this.searchInSelected();
   }
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    token: localStorage.getItem('token'),
+  });
 
   update() {
     console.log(this.registeredStudents);
     const ids = this.registeredStudents.map((student) => student.id);
     const url = `${API}/registration/examstudents/${this.data}`;
     this._httpClient
-      .post(url, { arr: ids }, { responseType: 'text' })
+      .post(url, {headers:this.headers, arr: ids }, { responseType: 'text' })
       .subscribe(
         (data) => {
           console.log(data);
           this.showSnackbar('Updated Successfully');
           this._httpClient
             .get(`${API}/registration/invite/${this.data}`, {
+              headers:this.headers,
               responseType: 'text',
             })
             .subscribe(

@@ -7,8 +7,9 @@ import { ExamComponent } from './exam/exam.component';
 import { StudentExamComponent } from './student-exam/student-exam.component';
 import { StudentsComponent } from './students/students.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
 import { ChartpageComponent } from './chartpage/chartpage.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
 const routes: Routes = [
   {
     path: '',
@@ -46,10 +47,15 @@ const routes: Routes = [
         data: { title: 'Scribe Management' },
       },
       {
-        path: 'chart',
-        component: ChartpageComponent,
+        path: 'faq',
+        component: FaqsComponent,
         data: { title: 'Scribe Management' },
       },
+      {
+        path: 'chart',
+        component: ChartpageComponent,
+      },
+
     ],
   },
 ];
