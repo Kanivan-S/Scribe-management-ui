@@ -5,29 +5,33 @@ import { AuthGuard } from './shared/auth.guard';
 import { RoleGuard } from './shared/role.guard';
 import { UsersComponent } from './users/users.component';
 import { NgoLandingPageComponent } from './ngo-landing-page/ngo-landing-page.component';
+import { AssistantComponent } from './shared/assistant/assistant.component';
 
 const routes: Routes = [
-  {path:'alogin',component:LoginRegisterComponent},
+  { path: 'alogin', component: LoginRegisterComponent },
 
-  { path: 'login', component:LoginRegisterComponent },
+  { path: 'login', component: LoginRegisterComponent },
   {
     path: 'admin',
     // canActivate:[RoleGuard,AuthGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((mod) => mod.AdminModule),
-
   },
   {
-    path:'user',
+    path: 'user',
     // canActivate:[RoleGuard,AuthGuard],
     loadChildren: () =>
       import('./users/users.module').then((mod) => mod.UsersModule),
   },
   {
-    path:'**',
-    component:NgoLandingPageComponent,
-    data:{title:"CSR-Hackathon"}
-  }
+    path: 'assistant-testing',
+    component: AssistantComponent,
+  },
+  {
+    path: '**',
+    component: NgoLandingPageComponent,
+    data: { title: 'CSR-Hackathon' },
+  },
 ];
 
 @NgModule({

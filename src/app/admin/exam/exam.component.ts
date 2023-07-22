@@ -19,6 +19,7 @@ export class ExamComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   examslist: Exam[] = [];
+  sortedExamList: Exam[] = [];
   constructor(
     private _httpClient: HttpClient,
     public dialog: MatDialog,
@@ -27,6 +28,10 @@ export class ExamComponent implements OnInit {
   ) {}
 
   isLoadingResults = true;
+  sortConfig = {
+    column: '',
+    type: '',
+  };
 
   fectchExamlist() {
     this.adser.getExamlist().subscribe(
@@ -36,6 +41,8 @@ export class ExamComponent implements OnInit {
         this.isLoadingResults = false;
       },
       (err) => {
+        this.errorOccured = true;
+        this.isLoadingResults = false;
         console.log('error in fetching exam list: ', err);
         this.showSnackbar('Error in fetching exam list!');
       }
@@ -82,6 +89,34 @@ export class ExamComponent implements OnInit {
     this.snackBar.open(msg, 'Close', {
       duration: 3000,
     });
+  }
+
+  customSort(column) {
+    console.log(column);
+    if (this.sortConfig.column === column) {
+      if (this.sortConfig.type === 'asc') {
+        let temp = this.examslist;
+        temp.sort((a, b) => {
+          if (typeof a[column] === 'string')
+            return b[column].localeCompare(a[column]);
+          return b[column] - a[column];
+        });
+        this.sortedExamList = [...temp];
+        this.sortConfig.type = 'desc';
+      } else {
+        this.sortedExamList = this.examslist;
+        this.sortConfig = { column: '', type: '' };
+      }
+    } else {
+      let temp = this.examslist;
+      temp.sort((a, b) => {
+        if (typeof a[column] === 'string')
+          return a[column].localeCompare(b[column]);
+        return a[column] - b[column];
+      });
+      this.sortedExamList = [...temp];
+      this.sortConfig = { column: column, type: 'asc' };
+    }
   }
 }
 

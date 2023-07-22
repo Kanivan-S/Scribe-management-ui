@@ -49,6 +49,10 @@ table {
   width: 100%;
 }
 
+.sortable:hover{
+  cursor:pointer;
+}
+
 .loading-shade {
   position: absolute;
   top: 0;

@@ -19,6 +19,7 @@ import { PhoneDialogComponent } from './phone-dialog/phone-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssistantComponent } from './assistant/assistant.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EmailDialogComponent,
     ContactParentsComponent,
     PhoneDialogComponent,
+    AssistantComponent,
   ],
   imports: [
     RouterModule,
