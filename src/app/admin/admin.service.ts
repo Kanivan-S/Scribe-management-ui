@@ -21,7 +21,7 @@ export class AdminService {
     private route: ActivatedRoute
   ) {}
 
-  getAdminProfileService(emailid: String) {
+  getAdminProfileService(emailid: string) {
     return this.http.get<any>(`${API}/admin/profile/` + emailid, {
       headers: this.headers,
     });

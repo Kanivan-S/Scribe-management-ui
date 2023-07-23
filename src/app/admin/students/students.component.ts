@@ -62,10 +62,14 @@ export class StudentsComponent implements OnInit {
           };
         });
         this.resultsLength = this.data.length;
+        this.isLoadingResults = false;
+        this.errorOccured = false;
         console.log(this.data);
       },
       (err) => {
         console.log(err);
+        this.isLoadingResults = false;
+        this.errorOccured = true;
       }
     );
   }
