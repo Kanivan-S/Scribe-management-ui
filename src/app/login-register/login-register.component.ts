@@ -67,9 +67,9 @@ export class LoginRegisterComponent implements OnInit {
         (data: any) => {
           if (data) {
             localStorage.clear();
-            localStorage.setItem('token',data.body.message);
-            localStorage.setItem('email', data.body.email);
-            localStorage.setItem('id', data.body.id);
+            localStorage.setItem('token', data.body.message);
+            localStorage.setItem('email', data.body.result.email);
+            localStorage.setItem('id', data.body.result.id);
             localStorage.setItem('isUser', 'false');
             this.router.navigate(['admin']);
           } else {
@@ -89,9 +89,9 @@ export class LoginRegisterComponent implements OnInit {
       this.aps.authenticateUser(formJson, this.isAdmin).subscribe(
         (data) => {
           localStorage.clear();
-          localStorage.setItem('token',data.body.message);
-          localStorage.setItem('email', data.body.email);
-          localStorage.setItem('id', data.body.id);
+          localStorage.setItem('token', data.body.message);
+          localStorage.setItem('email', data.body.result.email);
+          localStorage.setItem('id', data.body.result.id);
           localStorage.setItem('isUser', 'true');
           this.router.navigate(['user']);
         },
@@ -113,10 +113,10 @@ export class LoginRegisterComponent implements OnInit {
     this.aps.authenticateRegister(formJson).subscribe(
       (data) => {
         alert('user registered!');
-        localStorage.setItem('token',data.body.message);
-        localStorage.setItem('email', data.body.email);
+        localStorage.setItem('token', data.body.message);
+        localStorage.setItem('email', data.body.result.email);
         localStorage.setItem('isUser', 'true');
-        localStorage.setItem('id', data.body.id);
+        localStorage.setItem('id', data.body.result.id);
         this.router.navigate(['user']);
       },
       (err) => {

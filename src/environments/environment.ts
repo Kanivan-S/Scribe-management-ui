@@ -7,7 +7,7 @@ export const environment = {
 };
 
 // export const API = 'http://localhost:8080'; //Local Server
-export const API = 'http://192.168.3.76:8080';
+export const API = 'http://172.20.127.209:8080';
 export const IMG_URL = 'assets/img';
 export const OPEN_AI_API_KEY =
   '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';

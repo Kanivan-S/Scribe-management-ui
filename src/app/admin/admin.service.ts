@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { API } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AdminService {
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    token: localStorage.getItem('token'),
+    Token: localStorage.getItem('token'),
   });
   constructor(
     private http: HttpClient,
@@ -23,8 +22,8 @@ export class AdminService {
   ) {}
 
   getAdminProfileService(emailid: String) {
-    return this.http.get<any>(`${API}/admin/profile/` + emailid,{
-      headers:this.headers,
+    return this.http.get<any>(`${API}/admin/profile/` + emailid, {
+      headers: this.headers,
     });
   }
 
