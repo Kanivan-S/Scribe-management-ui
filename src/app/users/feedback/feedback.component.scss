@@ -1,0 +1,39 @@
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    &__box {
+      min-height: 120px;
+      background: #1e293b;
+      margin: 0 -1rem;
+      font-size: 2em;
+    }
+    &__content {
+      min-height: calc(100vh - 178px);
+      border-radius: 10px;
+      margin-top: -2rem;
+      background: white;
+      color: black;
+      font-size: 1em;
+      // &-data {
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      // }
+    }
+  }
+  
+  .full-width{
+    width: 100%;
+    border:1px solid black;
+    border-bottom: none;
+    padding:5px;
+    border-radius: 5px;
+    margin:20px auto;
+  }
+
+  textarea{
+    display: block;
+    width:80%;
+    margin:10px auto;
+  }

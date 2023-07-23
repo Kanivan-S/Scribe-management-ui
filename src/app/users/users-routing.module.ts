@@ -10,6 +10,8 @@ import { VolunteerCheckinComponent } from './volunteer-checkin/volunteer-checkin
 import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { AllExamsComponent } from './all-exams/all-exams.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 const routes: Routes = [
   {
     path: '',
@@ -45,6 +47,16 @@ const routes: Routes = [
       {
         path: 'faq',
         component: FaqsComponent,
+        data: { title: 'Scribe Management' },
+      },
+      {
+        path: 'feedback',
+        component: FeedbackComponent,
+        data: { title: 'Scribe Management' },
+      },
+      {
+        path: 'analysis',
+        component: AnalysisComponent,
         data: { title: 'Scribe Management' },
       },
       {

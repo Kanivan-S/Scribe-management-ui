@@ -1,0 +1,20 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Feedback</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-btns">
+      <mat-form-field class="full-width">
+        <mat-label>Write your feedback</mat-label>
+        <textarea [(ngModel)]="feedback" matInput rows="10"></textarea>
+      </mat-form-field>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <button
+        *ngIf="!isLoading"
+        (click)="submit()"
+        mat-raised-button
+        color="primary"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

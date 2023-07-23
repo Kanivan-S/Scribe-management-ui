@@ -4,7 +4,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -33,6 +33,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FaqsComponent } from './faqs/faqs.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AllExamsComponent } from './all-exams/all-exams.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { AllExamsComponent } from './all-exams/all-exams.component';
     CalendarComponent,
     FaqsComponent,
     AllExamsComponent,
+    FeedbackComponent,
+    AnalysisComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +84,7 @@ import { AllExamsComponent } from './all-exams/all-exams.component';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
+    FormsModule,
   ],
 })
 export class UsersModule {}
