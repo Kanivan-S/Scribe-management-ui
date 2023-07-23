@@ -10,6 +10,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ChartpageComponent } from './chartpage/chartpage.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { ContactParentsComponent } from '../shared/contact-parents/contact-parents.component';
+import { OverallAnalysisComponent } from './overall-analysis/overall-analysis.component';
+import { VolunteerAnalysisComponent } from './volunteer-analysis/volunteer-analysis.component';
+import { AllFeedbacksComponent } from './all-feedbacks/all-feedbacks.component';
 const routes: Routes = [
   {
     path: '',
@@ -55,7 +58,18 @@ const routes: Routes = [
         path: 'chart',
         component: ChartpageComponent,
       },
-
+      {
+        path: 'overall-analysis',
+        component: OverallAnalysisComponent,
+      },
+      {
+        path: 'volunteer-analysis',
+        component: VolunteerAnalysisComponent,
+      },
+      {
+        path: 'all-feedbacks',
+        component: AllFeedbacksComponent,
+      },
     ],
   },
 ];

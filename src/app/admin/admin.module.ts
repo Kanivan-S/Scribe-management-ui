@@ -48,6 +48,9 @@ import { VolunteerExamComponent } from './volunteer-exam/volunteer-exam.componen
 import { ChartpageComponent } from './chartpage/chartpage.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { OverallAnalysisComponent } from './overall-analysis/overall-analysis.component';
+import { VolunteerAnalysisComponent } from './volunteer-analysis/volunteer-analysis.component';
+import { AllFeedbacksComponent } from './all-feedbacks/all-feedbacks.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     VolunteerExamComponent,
     ChartpageComponent,
     FaqsComponent,
+    OverallAnalysisComponent,
+    VolunteerAnalysisComponent,
+    AllFeedbacksComponent,
   ],
   imports: [
     MatButtonModule,

@@ -39,5 +39,47 @@
     <a mat-list-item routerLinkActive="list-item-active" routerLink="faq">
       <mat-icon>F </mat-icon> FAQs
     </a>
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      *ngIf="!isAdmin"
+      routerLink="feedback"
+    >
+      <mat-icon>F </mat-icon> Feedback
+    </a>
+
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      *ngIf="isAdmin"
+      routerLink="overall-analysis"
+    >
+      <mat-icon>A </mat-icon> Overall Analysis
+    </a>
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      *ngIf="isAdmin"
+      routerLink="volunteer-analysis"
+    >
+      <mat-icon>A </mat-icon> Volunteer wise Analysis
+    </a>
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      *ngIf="isAdmin"
+      routerLink="all-feedbacks"
+    >
+      <mat-icon>A </mat-icon> See Feedbacks
+    </a>
+
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      *ngIf="!isAdmin"
+      routerLink="analysis"
+    >
+      <mat-icon>A </mat-icon> My Analysis
+    </a>
   </div>
 </mat-nav-list>

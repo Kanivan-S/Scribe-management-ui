@@ -8,13 +8,13 @@
         </button>
       </div>
 
-      <div *ngIf="data.length == 0">
+      <div *ngIf="data.length == 0 && !isLoadingResults">
         <div>
           <p id="no-results">No students found !</p>
         </div>
       </div>
 
-      <div *ngIf="data.length > 0" class="main-container mat-elevation-z8">
+      <div class="main-container mat-elevation-z8">
         <div class="loading-shade" *ngIf="isLoadingResults || errorOccured">
           <mat-spinner *ngIf="isLoadingResults" [diameter]="30"></mat-spinner>
           <div class="errorOccured" *ngIf="errorOccured">
@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div class="table-container">
+        <div *ngIf="data.length > 0" class="table-container">
           <table mat-table [dataSource]="data" class="table">
             <ng-container matColumnDef="S-No">
               <th mat-header-cell *matHeaderCellDef>S NO</th>
@@ -63,6 +63,7 @@
         </div>
 
         <mat-paginator
+          *ngIf="data.length > 0"
           [length]="resultsLength"
           [pageSize]="20"
           aria-label="Select page of exam results"

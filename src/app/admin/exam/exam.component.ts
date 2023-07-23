@@ -27,6 +27,7 @@ export class ExamComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
+  resultsLength = 0;
   isLoadingResults = true;
   sortConfig = {
     column: '',
@@ -36,9 +37,11 @@ export class ExamComponent implements OnInit {
   fectchExamlist() {
     this.adser.getExamlist().subscribe(
       (data) => {
-        this.data = data.body;
-        this.resultsLength = this.data.length;
+        this.examslist = data.body;
+        this.resultsLength = this.examslist.length;
+        this.sortedExamList = this.examslist;
         this.isLoadingResults = false;
+        console.log(this.examslist);
       },
       (err) => {
         this.errorOccured = true;
@@ -51,7 +54,6 @@ export class ExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.fectchExamlist();
-    // console.log(this.examslist);
   }
   details(exam) {
     this.dialog.open(ExamDialogComponent, {
@@ -82,7 +84,6 @@ export class ExamComponent implements OnInit {
   displayedColumns: string[] = ['exam-date', 'exam-name', 'desc', 'city'];
   data: Exams[] = [];
 
-  resultsLength = 0;
   errorOccured = false;
 
   showSnackbar(msg: any) {
@@ -129,9 +130,9 @@ export interface Exam {
   sno: number;
   id: string;
   name: string;
-  desc: string;
+  description: string;
   address: string;
-  date: Date;
+  date: string;
   city: string;
   state: string;
   postalcode: string;

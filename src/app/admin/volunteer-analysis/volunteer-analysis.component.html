@@ -1,0 +1,32 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Volunteer Wise Analysis</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-btns">
+      <mat-spinner
+        *ngIf="volunteers.length === 0"
+        [diameter]="30"
+      ></mat-spinner>
+      <mat-form-field *ngIf="volunteers.length > 0">
+        <mat-label>Choose a volunteer</mat-label>
+        <mat-select [(ngModel)]="selectedVolunteer" name="volunteer">
+          <mat-option
+            (click)="getChartData(volunteer.id)"
+            *ngFor="let volunteer of volunteers"
+            [value]="volunteer.id"
+          >
+            {{ volunteer.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <div
+        [style.display]="
+          isLoading && !volunteerNotCommented ? 'hidden' : 'block'
+        "
+        class="chart-container"
+      >
+        <canvas id="MyChart">{{ chart }}</canvas>
+      </div>
+    </div>
+  </div>
+</div>

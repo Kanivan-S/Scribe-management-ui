@@ -1,0 +1,22 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Feedbacks by volunteers</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-btns">
+      <div class="mainContainer">
+        <mat-accordion>
+          <mat-expansion-panel
+            *ngFor="let feedback of feedbacks"
+            (click)="feedback.expanded = !feedback.expanded"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title class="question">
+                {{ feedback.shorten }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="answer">{{ feedback.full }}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

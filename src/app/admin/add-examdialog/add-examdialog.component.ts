@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../admin.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-examdialog',
@@ -80,6 +80,7 @@ export class AddExamdialogComponent implements OnInit {
         }, 300);
       },
       (err) => {
+        console.log(err);
         this.showSnackbar('Error in adding exam details\n');
       }
     );
