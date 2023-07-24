@@ -31,7 +31,7 @@ export class ExamDialogComponent implements OnInit {
     console.log(this.exam.name);
     this.examform = new FormGroup({
       name: new FormControl(this.exam.name, [Validators.required]),
-      desc: new FormControl(this.exam.description, [Validators.required]),
+      desc: new FormControl(this.exam.desc, [Validators.required]),
       date: new FormControl(this.exam.date, [Validators.required]),
       city: new FormControl(this.exam.city, [Validators.required]),
       address: new FormControl(this.exam.address, [Validators.required]),

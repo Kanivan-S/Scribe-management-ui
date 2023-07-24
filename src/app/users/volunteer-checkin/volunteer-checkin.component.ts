@@ -18,32 +18,42 @@ export class VolunteerCheckinComponent implements OnInit {
   ) {}
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    'token': localStorage.getItem('token'),
+    token: localStorage.getItem('token'),
   });
   examId: string;
   loading: boolean = true;
   volId: string;
   exam: any;
   ngOnInit(): void {
+    if (
+      !localStorage.getItem('token') ||
+      localStorage.getItem('isUser') === 'false'
+    ) {
+      window.alert('Login first!!');
+      this.router.navigateByUrl('/');
+      return;
+    }
     this.route.queryParams.subscribe((params) => {
       this.examId = params.examId;
       this.volId = params.volId;
-      this.httpClient.get(`${API}/exams/getexam/${this.examId}`,{headers:this.headers}).subscribe(
-        (response) => {
-          console.log(response);
-          this.exam = response;
-          this.exam.date =
-            new Date(Date.parse(this.exam.date)).toLocaleDateString() +
-            ' at ' +
-            new Date(Date.parse(this.exam.date)).toLocaleTimeString();
-          this.loading = false;
-        },
-        (err) => {
-          console.log('error in fetching exam: ', err);
-          this.showSnackbar('error in fetching exam details');
-          this.loading = false;
-        }
-      );
+      this.httpClient
+        .get(`${API}/exams/getexam/${this.examId}`, { headers: this.headers })
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.exam = response;
+            this.exam.date =
+              new Date(Date.parse(this.exam.date)).toLocaleDateString() +
+              ' at ' +
+              new Date(Date.parse(this.exam.date)).toLocaleTimeString();
+            this.loading = false;
+          },
+          (err) => {
+            console.log('error in fetching exam: ', err);
+            this.showSnackbar('error in fetching exam details');
+            this.loading = false;
+          }
+        );
     });
   }
   showSnackbar(msg: any) {
@@ -54,7 +64,7 @@ export class VolunteerCheckinComponent implements OnInit {
   accept() {
     this.httpClient
       .get(`${API}/registration/accept/${this.volId}/${this.examId}`, {
-        headers:this.headers,
+        headers: this.headers,
         responseType: 'text',
       })
       .subscribe(
@@ -64,6 +74,23 @@ export class VolunteerCheckinComponent implements OnInit {
         },
         (err) => {
           console.log('error in accepting: ', err);
+          this.showSnackbar('Some error occured. Try again later!!');
+        }
+      );
+  }
+  reject() {
+    this.httpClient
+      .get(`${API}/registration/reject/${this.volId}`, {
+        headers: this.headers,
+        responseType: 'text',
+      })
+      .subscribe(
+        (response) => {
+          this.showSnackbar('Rejected Successfully');
+          this.router.navigateByUrl('/user');
+        },
+        (err) => {
+          console.log('error in rejecting: ', err);
           this.showSnackbar('Some error occured. Try again later!!');
         }
       );

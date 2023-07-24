@@ -13,7 +13,7 @@
           Some error occured ...
         </div>
       </div>
-
+      <div *ngIf="!isLoadingResults && resultsLength === 0">No exams found</div>
       <div *ngIf="resultsLength > 0" class="main-container mat-elevation-z8">
         <div class="table-container">
           <table mat-table [dataSource]="sortedExamList" class="table">
