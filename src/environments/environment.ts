@@ -7,7 +7,7 @@ export const environment = {
 };
 
 // export const API = 'http://localhost:8080'; //Local Server
-export const API = 'https://scribe-management-api-production.up.railway.app/';
+export const API = 'https://scribe-management-api-production.up.railway.app';
 export const IMG_URL = 'assets/img';
 export const OPEN_AI_API_KEY =
   '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';
