@@ -88,8 +88,8 @@ export class UserProfileComponent implements OnInit {
         this.userprofileform=new FormGroup({
           username:new FormControl({value:this.userProfile["name"]!==null?this.userProfile["name"] :"NA",disabled: !this.isEditMode},[Validators.required]),
           usercontact:new FormControl({value:this.userProfile["phone"]!==null?this.userProfile["phone"] :"NA",disabled: !this.isEditMode},[Validators.required]),
+          useremail:new FormControl({value:this.userProfile["email"]!==null?this.userProfile["email"] :"NA",disabled: true}, [Validators.required]),
           userid:new FormControl({value:this.userProfile["id"]!==null?this.userProfile["id"] :"NA",disabled: true},[Validators.required]),
-          useremail:new FormControl({value:this.userProfile["email"]!==null?this.userProfile["email"] :"NA",disabled: true}, [Validators.required, Validators.email]),
           useraddress:new FormControl({value:this.userProfile["address"]!==null?this.userProfile["address"] :"NA",disabled: !this.isEditMode},[Validators.required])
         })
       }

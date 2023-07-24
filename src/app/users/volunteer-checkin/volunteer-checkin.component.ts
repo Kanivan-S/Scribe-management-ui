@@ -60,7 +60,7 @@ export class VolunteerCheckinComponent implements OnInit {
       .subscribe(
         (response) => {
           this.showSnackbar(response);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/user/calendar');
         },
         (err) => {
           console.log('error in accepting: ', err);

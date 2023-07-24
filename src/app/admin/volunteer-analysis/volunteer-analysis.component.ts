@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { API } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {MatTabsModule} from '@angular/material/tabs';
 @Component({
   selector: 'app-volunteer-analysis',
   templateUrl: './volunteer-analysis.component.html',
@@ -14,11 +14,13 @@ export class VolunteerAnalysisComponent implements OnInit {
   colors = ['red', 'green', 'yellow', 'blue', 'pink'];
   public chart: any;
 
+  public barchart:any
+
   isLoading: boolean = false;
   volunteers = [];
   selectedVolunteer: string = '';
   volunteerNotCommented: boolean = false;
-  createPieChart(labels, data) {
+  createPieChart(labels: string[], data: unknown[]) {
     this.chart = new Chart('MyChart', {
       type: 'pie',
       data: {
@@ -35,6 +37,34 @@ export class VolunteerAnalysisComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+  }
+
+
+  createBarchart(labs: any[],data: any[]){
+    this.barchart = new Chart("BarChart", {
+      type: 'bar', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: ['User Name'],
+	       datasets: [
+          {
+            label: labs[0],
+            data: [data[0]],
+            backgroundColor: 'Red'
+          },
+          {
+            label: labs[1],
+            data: [data[1]],
+            backgroundColor: 'Green'
+          }
+        ]
+      },
+
+    });
+  }
+
+  getBarchart(vId: any){
+    this.getChartData(vId);
   }
 
   ngOnInit(): void {
@@ -57,8 +87,8 @@ export class VolunteerAnalysisComponent implements OnInit {
       );
   }
 
-  getChartData(vId) {
-    if (this.chart) this.chart.destroy();
+  getChartData(vId: any) {
+    if (this.chart) this.chart.destroy()
     this.isLoading = true;
     this.http
       .get<any>(`${API}/comment/getanalysis-volunteer/${vId}`, {
@@ -79,7 +109,12 @@ export class VolunteerAnalysisComponent implements OnInit {
           }
           const labels = Object.keys(res.result);
           const data = Object.values(res.result);
+
+          const barlabels=Object.keys(res.resultBar);
+          const bardata=Object.values(res.resultBar);
+
           this.createPieChart(labels, data);
+          this.createBarchart(barlabels,bardata);
         },
         (err) => {
           console.log(err);

@@ -1,4 +1,4 @@
-<div class="container-fluid page">
+<!-- <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">Overall Analysis</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="container-btns">
@@ -6,6 +6,38 @@
       <div class="chart-container">
         <canvas id="MyChart">{{ chart }}</canvas>
       </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Overall Analysis</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-btns">
+
+      <mat-tab-group>
+        <mat-tab label="Registration Analysis">
+
+          <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+          <div >
+            <canvas id="BarChart"  width="300" height="150" >{{ barchart }}</canvas>
+          </div>
+
+
+
+
+        </mat-tab>
+        <mat-tab label="Feedback Analysis">
+
+          <div class="chart-container">
+            <canvas id="MyChart" height="100">{{ chart }}</canvas>
+          </div>
+          <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+
+
+
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>

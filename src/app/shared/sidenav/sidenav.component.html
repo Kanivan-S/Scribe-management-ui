@@ -12,7 +12,7 @@
       routerLinkActive="list-item-active"
       routerLink="all-exams"
     >
-      <mat-icon>D</mat-icon>Upcoming Opportunities
+    <mat-icon>touch_app</mat-icon>Upcoming Opportunities
     </a>
     <a
       *ngIf="isAdmin"
@@ -23,10 +23,10 @@
       <mat-icon>supervised_user_circle</mat-icon>Students
     </a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="calendar">
-      <mat-icon>calendar_today</mat-icon> Calendar
+      <mat-icon>event</mat-icon>Calendar
     </a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="exam">
-      <mat-icon>E</mat-icon> Exams
+      <mat-icon>schedule</mat-icon> Exams
     </a>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="contact">
@@ -37,7 +37,7 @@
       <mat-icon>account_circle </mat-icon> Profile Page
     </a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="faq">
-      <mat-icon>F </mat-icon> FAQs
+      <mat-icon>help</mat-icon> FAQs
     </a>
     <a
       mat-list-item
@@ -45,7 +45,7 @@
       *ngIf="!isAdmin"
       routerLink="feedback"
     >
-      <mat-icon>F </mat-icon> Feedback
+    <mat-icon>feedback</mat-icon> Feedback
     </a>
 
     <a
@@ -54,7 +54,7 @@
       *ngIf="isAdmin"
       routerLink="overall-analysis"
     >
-      <mat-icon>A </mat-icon> Overall Analysis
+    <mat-icon>description</mat-icon>Overall Analysis
     </a>
     <a
       mat-list-item
@@ -62,7 +62,7 @@
       *ngIf="isAdmin"
       routerLink="volunteer-analysis"
     >
-      <mat-icon>A </mat-icon> Volunteer wise Analysis
+    <mat-icon>track_changes</mat-icon>Volunteer wise Analysis
     </a>
     <a
       mat-list-item
@@ -70,7 +70,7 @@
       *ngIf="isAdmin"
       routerLink="all-feedbacks"
     >
-      <mat-icon>A </mat-icon> See Feedbacks
+    <mat-icon>question_answer</mat-icon>See Feedbacks
     </a>
 
     <a
@@ -79,7 +79,7 @@
       *ngIf="!isAdmin"
       routerLink="analysis"
     >
-      <mat-icon>A </mat-icon> My Analysis
+    <mat-icon>track_changes</mat-icon>My Analysis
     </a>
   </div>
 </mat-nav-list>
