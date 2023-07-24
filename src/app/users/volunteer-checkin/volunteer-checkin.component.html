@@ -1,4 +1,7 @@
-<div class="mainContainer">
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Approval Page</div>
+  <div class="page__content shadow p-3 position-relative">
+   <div class="mainContainer">
   <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
   <h2 *ngIf="!loading">
     Request for {{ exam?.name }} on {{ exam?.date }} at {{ exam?.address }},
@@ -14,3 +17,6 @@
     >
   </div>
 </div>
+    </div>
+</div>
+
