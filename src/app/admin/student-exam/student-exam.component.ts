@@ -19,35 +19,41 @@ export class StudentExamComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   fetchstudents() {
-    this.adser.getUnregisterdStudents(this.data).subscribe((response) => {
-      console.log(response);
-      this.filteredEligibleStudents = response.body.map((c) => ({
-        name: c.name,
-        rollno: c.rollno,
-        id: c.id,
-      }));
-      this.eligibleStudents = response.body.map((c) => ({
-        name: c.name,
-        rollno: c.rollno,
-        id: c.id,
-      }));
+    this.adser.getUnregisterdStudents(this.data).subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.filteredEligibleStudents = response.body.map((c) => ({
+          name: c.name,
+          rollno: c.rollno,
+          id: c.id,
+        }));
+        this.eligibleStudents = response.body.map((c) => ({
+          name: c.name,
+          rollno: c.rollno,
+          id: c.id,
+        }));
 
-      this.adser.getRegisterdStudents(this.data).subscribe((response) => {
-        console.log(response);
-        this.registeredStudents = response.body.map((c) => ({
-          name: c.name,
-          rollno: c.rollno,
-          id: c.id,
-        }));
-        this.filteredSelectedStudents = response.body.map((c) => ({
-          name: c.name,
-          rollno: c.rollno,
-          id: c.id,
-        }));
-      });
-    });
+        this.adser.getRegisterdStudents(this.data).subscribe((response) => {
+          console.log(response);
+          this.registeredStudents = response.body.map((c) => ({
+            name: c.name,
+            rollno: c.rollno,
+            id: c.id,
+          }));
+          this.filteredSelectedStudents = response.body.map((c) => ({
+            name: c.name,
+            rollno: c.rollno,
+            id: c.id,
+          }));
+        });
+      },
+      (err) => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );
   }
   //totals
   registeredStudents: Student[] = [];
@@ -151,14 +157,14 @@ export class StudentExamComponent implements OnInit {
     const ids = this.registeredStudents.map((student) => student.id);
     const url = `${API}/registration/examstudents/${this.data}`;
     this._httpClient
-      .post(url, {headers:this.headers, arr: ids }, { responseType: 'text' })
+      .post(url, { headers: this.headers, arr: ids }, { responseType: 'text' })
       .subscribe(
         (data) => {
           console.log(data);
           this.showSnackbar('Updated Successfully');
           this._httpClient
             .get(`${API}/registration/invite/${this.data}`, {
-              headers:this.headers,
+              headers: this.headers,
               responseType: 'text',
             })
             .subscribe(

@@ -37,10 +37,11 @@ export class ExamComponent implements OnInit {
   fectchExamlist() {
     this.adser.getExamlist().subscribe(
       (data) => {
+        this.isLoadingResults = false;
+        if (!data || !data.body) return;
         this.examslist = data.body;
         this.resultsLength = this.examslist.length;
         this.sortedExamList = this.examslist;
-        this.isLoadingResults = false;
         console.log(this.examslist);
       },
       (err) => {
@@ -130,7 +131,7 @@ export interface Exam {
   sno: number;
   id: string;
   name: string;
-  description: string;
+  desc: string;
   address: string;
   date: string;
   city: string;

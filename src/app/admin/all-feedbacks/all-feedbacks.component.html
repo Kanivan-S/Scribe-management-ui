@@ -3,19 +3,95 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="container-btns">
       <div class="mainContainer">
-        <mat-accordion>
-          <mat-expansion-panel
-            *ngFor="let feedback of feedbacks"
-            (click)="feedback.expanded = !feedback.expanded"
-          >
-            <mat-expansion-panel-header>
-              <mat-panel-title class="question">
-                {{ feedback.shorten }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p class="answer">{{ feedback.full }}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
+        <mat-spinner *ngIf="isLoadingResults" [diameter]="50"></mat-spinner>
+        <div *ngIf="!isLoadingResults" class="table-container">
+          <table mat-table [dataSource]="feedbacks">
+            <ng-container matColumnDef="message">
+              <th
+                class="sortable"
+                (click)="customSort('message')"
+                mat-header-cell
+                *matHeaderCellDef
+              >
+                Feedback
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'message' && sortConfig.type === 'asc'
+                  "
+                  >arrow_downward</mat-icon
+                >
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'message' &&
+                    sortConfig.type === 'desc'
+                  "
+                  >arrow_upward</mat-icon
+                >
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.message }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="volunteer">
+              <th
+                class="sortable"
+                (click)="customSort('volunteer')"
+                mat-header-cell
+                *matHeaderCellDef
+              >
+                Volunteer
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'volunteer' &&
+                    sortConfig.type === 'asc'
+                  "
+                  >arrow_downward</mat-icon
+                >
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'volunteer' &&
+                    sortConfig.type === 'desc'
+                  "
+                  >arrow_upward</mat-icon
+                >
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.volunteer }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sentiment">
+              <th
+                class="sortable"
+                (click)="customSort('sentiment')"
+                mat-header-cell
+                *matHeaderCellDef
+              >
+                Sentiment
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'sentiment' &&
+                    sortConfig.type === 'asc'
+                  "
+                  >arrow_downward</mat-icon
+                >
+                <mat-icon
+                  *ngIf="
+                    sortConfig.column === 'sentiment' &&
+                    sortConfig.type === 'desc'
+                  "
+                  >arrow_upward</mat-icon
+                >
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.sentiment }}
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>

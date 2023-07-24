@@ -1,7 +1,8 @@
 <h2 class="title" mat-dialog-title>Add/Remove students for exam</h2>
-<mat-dialog-content *ngIf="!isLoading">
+<mat-dialog-content>
   <hr />
-  <div class="mainContainer">
+  <mat-spinner *ngIf="isLoading" [diameter]="50"></mat-spinner>
+  <div *ngIf="!isLoading" class="mainContainer">
     <div class="subContainer">
       <h4>Eligible Students</h4>
       <mat-form-field class="full-width">

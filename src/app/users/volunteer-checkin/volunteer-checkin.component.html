@@ -8,7 +8,9 @@
   <div class="actions">
     <button (click)="accept()" mat-raised-button color="primary">Accept</button>
     <a [routerLink]="'/'"
-      ><button mat-raised-button color="accent">Reject</button></a
+      ><button (click)="reject()" mat-raised-button color="accent">
+        Reject
+      </button></a
     >
   </div>
 </div>
