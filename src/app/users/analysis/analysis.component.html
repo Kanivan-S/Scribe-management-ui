@@ -3,7 +3,10 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="container-btns">
       <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
-      <div class="chart-container">
+      <div
+        [style.display]="isLoading ? 'hidden' : 'block'"
+        class="chart-container"
+      >
         <canvas id="MyChart">{{ chart }}</canvas>
       </div>
     </div>

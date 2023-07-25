@@ -42,18 +42,16 @@ export class AnalysisComponent implements OnInit {
       })
       .subscribe(
         (res) => {
-          console.log(res);
-          if(res){
+          if (res) {
             const labels = Object.keys(res.result);
             const data = Object.values(res.result);
+            console.log(labels, data);
             this.createPieChart(labels, data);
             this.isLoading = false;
-          }
-          else{
+          } else {
             this.isLoading = false;
             this.showSnackbar('No results!!');
           }
-
         },
         (err) => {
           console.log(err);

@@ -6,14 +6,14 @@
   <h2 matSubheader class="mt-2">Navigation</h2>
 
   <div>
-    <!-- <a
+    <a
       *ngIf="!isAdmin"
       mat-list-item
       routerLinkActive="list-item-active"
       routerLink="all-exams"
     >
-    <mat-icon>touch_app</mat-icon>Upcoming Opportunities
-    </a> -->
+      <mat-icon>touch_app</mat-icon>Upcoming Opportunities
+    </a>
     <a
       *ngIf="isAdmin"
       mat-list-item
@@ -45,7 +45,7 @@
       *ngIf="!isAdmin"
       routerLink="feedback"
     >
-    <mat-icon>feedback</mat-icon> Feedback
+      <mat-icon>feedback</mat-icon> Feedback
     </a>
 
     <a
@@ -54,7 +54,7 @@
       *ngIf="isAdmin"
       routerLink="overall-analysis"
     >
-    <mat-icon>description</mat-icon>Overall Analysis
+      <mat-icon>description</mat-icon>Overall Analysis
     </a>
     <a
       mat-list-item
@@ -62,7 +62,7 @@
       *ngIf="isAdmin"
       routerLink="volunteer-analysis"
     >
-    <mat-icon>track_changes</mat-icon>Volunteer wise Analysis
+      <mat-icon>track_changes</mat-icon>Volunteer wise Analysis
     </a>
     <a
       mat-list-item
@@ -70,7 +70,7 @@
       *ngIf="isAdmin"
       routerLink="all-feedbacks"
     >
-    <mat-icon>question_answer</mat-icon>See Feedbacks
+      <mat-icon>question_answer</mat-icon>See Feedbacks
     </a>
 
     <a
@@ -79,7 +79,7 @@
       *ngIf="!isAdmin"
       routerLink="analysis"
     >
-    <mat-icon>track_changes</mat-icon>My Analysis
+      <mat-icon>track_changes</mat-icon>My Analysis
     </a>
   </div>
 </mat-nav-list>
