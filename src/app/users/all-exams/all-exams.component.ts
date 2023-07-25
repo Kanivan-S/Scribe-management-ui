@@ -11,7 +11,7 @@ export class AllExamsComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, public http: HttpClient) {}
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    'token': localStorage.getItem('token'),
+    token: localStorage.getItem('token'),
   });
 
   sortConfig = {
@@ -24,44 +24,30 @@ export class AllExamsComponent implements OnInit {
   exams: Exam[] = [];
   sortedExams: Exam[] = [];
   ngOnInit(): void {
-    const vId = localStorage.getItem('id');
-    //send only those exams which are not volunteered by this volunteer
-    // this.http.get<any>(`${API}/volunteer/upcomingExams/${vId}`,headers:this.headers).subscribe(
-    //   (response) => {
-    //     console.log(response);
-    //     response.forEach((item) => {
-    //       this.exams = [
-    //         ...this.exams,
-    //         {
-    //           examId: item.exam.id,
-    //           examName: item.exam.name,
-    //           examAddress: item.exam.address,
-    //           date: item.exam.date,
-    //           volId: item.volunteer.id,
-    //         },
-    //       ];
-    //     });
-    //     this.noExams = this.exams.length === 0;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.showSnackbar('Error occured in fetching list of exams..');
-    //   }
-    // );
-    this.exams = [
-      {
-        examId: 1,
-        examName: 'first exam',
-        examAddress: 'first address',
-        date: new Date(Date.now()),
-      },
-      {
-        examId: 2,
-        examName: 'second exam',
-        examAddress: 'second address',
-        date: new Date(Date.now()),
-      },
-    ];
+    this.http
+      .get<any>(`${API}/admin/getexams`, { headers: this.headers })
+      .subscribe(
+        (response) => {
+          console.log(response);
+          response.forEach((item) => {
+            this.exams = [
+              ...this.exams,
+              {
+                examId: item.id,
+                examName: item.name,
+                examAddress: item.address,
+                date: item.date,
+              },
+            ];
+          });
+          this.sortedExams = this.exams;
+          this.noExams = this.exams.length === 0;
+        },
+        (err) => {
+          console.log(err);
+          this.showSnackbar('Error occured in fetching list of exams..');
+        }
+      );
     this.sortedExams = this.exams;
   }
 
