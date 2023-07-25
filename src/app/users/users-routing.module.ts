@@ -27,10 +27,10 @@ const routes: Routes = [
         path: 'userpage',
         component: DashboardComponent,
       },
-      {
-        path: 'all-exams',
-        component: AllExamsComponent,
-      },
+      // {
+      //   path: 'all-exams',
+      //   component: AllExamsComponent,
+      // },
       {
         path: 'profile',
         component: UserProfileComponent,

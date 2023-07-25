@@ -4,6 +4,9 @@
     <div class="container-btns">
       <mat-form-field class="full-width">
         <mat-label>Write your feedback</mat-label>
+        <br>
+        <br>
+        <br>
         <textarea [(ngModel)]="feedback" matInput rows="10"></textarea>
       </mat-form-field>
       <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>

@@ -6,14 +6,14 @@
   <h2 matSubheader class="mt-2">Navigation</h2>
 
   <div>
-    <a
+    <!-- <a
       *ngIf="!isAdmin"
       mat-list-item
       routerLinkActive="list-item-active"
       routerLink="all-exams"
     >
     <mat-icon>touch_app</mat-icon>Upcoming Opportunities
-    </a>
+    </a> -->
     <a
       *ngIf="isAdmin"
       mat-list-item
@@ -26,7 +26,7 @@
       <mat-icon>event</mat-icon>Calendar
     </a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="exam">
-      <mat-icon>schedule</mat-icon> Exams
+      <mat-icon>touch_app</mat-icon> Exams
     </a>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="contact">
